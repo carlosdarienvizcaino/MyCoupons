@@ -4,15 +4,22 @@
 
 'use strict';
 
-import errors from './components/errors';
-import path from 'path';
+var errors =  require('./components/errors');
+var path = require('path');
 
-export default function(app) {
+module.exports = function(app) {
+
+
   // Insert routes below
-  app.use('/api/things', require('./api/thing'));
-  app.use('/api/users', require('./api/user'));
+  //app.use('/api/things', require('./api/thing'));
+  //app.use('/api/users', require('./api/user'));
+  //app.use('/auth', require('./auth').default);
 
-  app.use('/auth', require('./auth').default);
+  app.get('/', function(req,res){
+    res.sendFile(path.join(__dirname + "/views/index.html"));
+  });
+
+  app.post('/api/auth/authcode', require('./api/auth/authcode'));
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
