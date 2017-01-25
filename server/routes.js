@@ -9,17 +9,17 @@ var path = require('path');
 
 module.exports = function(app) {
 
-
   // Insert routes below
   //app.use('/api/things', require('./api/thing'));
-  //app.use('/api/users', require('./api/user'));
+  //app.use('/api/users', require('./api/user_example'));
   //app.use('/auth', require('./auth').default);
 
-  app.get('/', function(req,res){
-    res.sendFile(path.join(__dirname + "/views/index.html"));
-  });
-
   app.post('/api/auth/authcode', require('./api/auth/authcode'));
+
+  app.get('/api/user/:userId/couponsId/', require('./api/users/user.couponsId'));
+  app.get('/api/user/:userId/couponsId/:maxResults', require('./api/users/user.couponsId'));
+
+  app.get('/api/user/:userId/coupon/:emailId', require('./api/users/user.coupon'));
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

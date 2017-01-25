@@ -20,7 +20,9 @@ var client = new auth.OAuth2(credentials.client_id, '', '');
 
 module.exports = function(req, res){
 
+  console.log(req.body);
   var authorizationCode = req.body.authCode;
+  console.log(authCode);
   oauth2Client.getToken(authorizationCode, function (err, tokens) {
 
     if (err){
@@ -30,6 +32,7 @@ module.exports = function(req, res){
     }
     // Now tokens contains an access_token and an optional refresh_token. Save them.
     else {
+      console.log(tokens);
       oauth2Client.setCredentials(tokens);
       var idToken = tokens.id_token;
 

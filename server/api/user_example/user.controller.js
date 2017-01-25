@@ -31,7 +31,7 @@ export function index(req, res) {
 }
 
 /**
- * Creates a new user
+ * Creates a new user_example
  */
 export function create(req, res) {
   var newUser = new User(req.body);
@@ -48,7 +48,7 @@ export function create(req, res) {
 }
 
 /**
- * Get a single user
+ * Get a single user_example
  */
 export function show(req, res, next) {
   var userId = req.params.id;
@@ -64,7 +64,7 @@ export function show(req, res, next) {
 }
 
 /**
- * Deletes a user
+ * Deletes a user_example
  * restriction: 'admin'
  */
 export function destroy(req, res) {

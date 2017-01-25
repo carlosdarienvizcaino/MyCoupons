@@ -33,11 +33,9 @@
     var id_token = authorizationRes.id_token;
     console.log(authorizationRes);
 
-    googleUser.grantOfflineAccess(
-        {
-          //'redirect_uri': 'http://localhost:3002/api/auth/authcode'
-          'redirect_uri': 'postmessage'
-        }).then(sendAuthorizationCodeToServer);
+    googleUser.grantOfflineAccess({ 'redirect_uri': 'postmessage'}).then(sendAuthorizationCodeToServer);
+    //sendAuthorizationCodeToServer({code: '75ada'});
+
   }
 
   function onFailure(error){
@@ -47,6 +45,7 @@
 
   function sendAuthorizationCodeToServer(authCode){
 
+    console.log("Code: ", authCode);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:3002/api/auth/authcode');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

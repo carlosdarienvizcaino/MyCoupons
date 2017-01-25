@@ -136,7 +136,7 @@
   "scripts": {
     "test": "gulp test",
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
-    "start": "node server/"
+    "start": "http-server ./client/app -a 0.0.0.0 -p 3000 -c-1"
   },
   "private": true
 }
