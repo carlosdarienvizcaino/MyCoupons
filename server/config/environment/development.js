@@ -2,12 +2,11 @@
 /*eslint no-process-env:0*/
 
 // Development specific configuration
-// ==================================
 module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/mycoupons-dev'
+    uri: 'mongodb://Admin:Admin1@ds133249.mlab.com:33249/mycoupons'
   },
 
   // Seed database on startup
