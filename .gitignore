@@ -1,13 +1,14 @@
 node_modules
-build
 public
+build
+client/assets/fonts/
 .tmp
 .sass-cache
 .idea
 client/bower_components
 client/index.html
 dist
-/client/assets/*
 /server/config/local.env.js
 npm-debug.log
 coverage
+

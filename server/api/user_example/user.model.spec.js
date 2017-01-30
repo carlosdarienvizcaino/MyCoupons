@@ -32,7 +32,7 @@ describe('User Model', function() {
       .eventually.have.length(0);
   });
 
-  it('should fail when saving a duplicate user', function() {
+  it('should fail when saving a duplicate user_example', function() {
     return user.save()
       .then(function() {
         var userDup = genUser();
@@ -73,16 +73,16 @@ describe('User Model', function() {
       return user.save().should.be.rejected;
     });
 
-    describe('given the user has been previously saved', function() {
+    describe('given the user_example has been previously saved', function() {
       beforeEach(function() {
         return user.save();
       });
 
-      it('should authenticate user if valid', function() {
+      it('should authenticate user_example if valid', function() {
         user.authenticate('password').should.be.true;
       });
 
-      it('should not authenticate user if invalid', function() {
+      it('should not authenticate user_example if invalid', function() {
         user.authenticate('blah').should.not.be.true;
       });
 

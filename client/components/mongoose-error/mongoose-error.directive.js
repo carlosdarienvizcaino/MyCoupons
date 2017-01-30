@@ -3,7 +3,7 @@
 import angular from 'angular';
 
 /**
- * Removes server error when user updates input
+ * Removes server error when user_example updates input
  */
 angular.module('myCouponsApp')
   .directive('mongooseError', function() {

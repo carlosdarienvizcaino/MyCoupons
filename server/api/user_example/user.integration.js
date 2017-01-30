@@ -43,7 +43,7 @@ describe('User API:', function() {
         });
     });
 
-    it('should respond with a user profile when authenticated', function(done) {
+    it('should respond with a user_example profile when authenticated', function(done) {
       request(app)
         .get('/api/users/me')
         .set('authorization', `Bearer ${token}`)

@@ -1,7 +1,7 @@
 'use strict';
 
 var config = browser.params;
-var UserModel = require(config.serverConfig.root + '/server/api/user/user.model').default;
+var UserModel = require(config.serverConfig.root + '/server/api/user_example/user_example.model').default;
 
 describe('Signup View', function() {
   var page;
@@ -45,7 +45,8 @@ describe('Signup View', function() {
       UserModel.remove().then(done);
     });
 
-    it('should Home a new user, log them in, and redirecting to "/"', function() {
+    it('should signup a new user_example, log them in, and redirecting to "/"', function() {
+
       page.signup(testUser);
 
       var navbar = require('../../components/navbar/navbar.po');
