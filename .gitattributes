@@ -1,4 +1,4 @@
-* text=auto
+* text= eol=LF
 
 # These files are text and should be normalized (Convert crlf => lf)
 *.php  text
