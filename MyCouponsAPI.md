@@ -4,22 +4,18 @@
 
 ### Implemented
 
-**GET** http:domain:port//api/user/:userId/couponsId/
+**GET** http:domain:port//api/user/:userId/coupons/id/
 
-  *Description:* Get the latest coupon id
+  *Description:* Get the most recent coupon id
 
-**GET** http:domain:port//api/user/:userId/couponsId/:maxResults
+**GET** http:domain:port//api/user/:userId/coupons/id/:maxResults
   
-  *Description:* Get the latest maxResults coupon ids
+  *Description:* Get the most recent maxResults coupon ids
 
-**GET** http:domain:port//api/user/:userId/coupon/:id
+**GET** http:domain:port//api/user/:userId/coupons/:id
   
-  *Description:* Get the payload for a coupon with the provider id
+  *Description:* Get the payload for a coupon with the provided id
 
 ### To be Implemented
 
-**DELETE** http:domain:port//api/user/:userId/coupon/:id
-
-**DELETE** http:domain:port//api/user/:userId/coupon/:query?[:id]
-
-**DELETE** http:domain:port//api/user/:userId/coupon/:startDate
+**DELETE** http:domain:port//api/user/:userId/coupons/older/:startDate
