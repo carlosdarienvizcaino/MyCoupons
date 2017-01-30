@@ -6,9 +6,10 @@
 <body>
 <div id="my-signin2">div>
 <script>
+
   function renderButton() {
     gapi.signin2.render('my-signin2', {
-      'scope': 'profile email https://www.googleapis.com/auth/gmail.readonly',
+      'scope': 'profile',
       'width': 240,
       'height': 50,
       'longtitle': true,
@@ -30,28 +31,36 @@
     console.log("Email: " + profile.getEmail());
 
     var authorizationRes = googleUser.getAuthResponse();
-    var id_token = authorizationRes.id_token;
     console.log(authorizationRes);
 
-    googleUser.grantOfflineAccess({ 'redirect_uri': 'postmessage'}).then(sendAuthorizationCodeToServer);
-    //sendAuthorizationCodeToServer({code: '75ada'});
-
+    googleUser.grantOfflineAccess({
+        'scope': 'https://www.googleapis.com/auth/gmail.readonly',
+        'redirect_uri': 'postmessage'
+    })
+      .then(sendAuthorizationCodeToServer);
   }
 
-  function onFailure(error){
-      console.log(error);
+  function onFailure(err){
+      console.log(err);
   }
-
 
   function sendAuthorizationCodeToServer(authCode){
 
-    console.log("Code: ", authCode);
+    var url = 'http://localhost:3002/api/auth/authcode';
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3002/api/auth/authcode');
+    xhr.open('POST',url,true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
+
+      var res = JSON.parse(xhr.response);
+      console.log(xhr.response);
+      console.log(xhr.response['access_token']);
       console.log('Signed in as: ' + xhr.responseText);
     };
+
+    xhr.onerror = function(err){
+       console.log(err) ;
+    }
 
     xhr.send("authCode=" + authCode['code']);
   }

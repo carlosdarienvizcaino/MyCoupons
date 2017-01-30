@@ -14,12 +14,12 @@ module.exports = function(app) {
   //app.use('/api/users', require('./api/user_example'));
   //app.use('/auth', require('./auth').default);
 
-  app.post('/api/auth/authcode', require('./api/auth/authcode'));
+  app.post('/api/auth/authcode/', require('./api/auth/authcode'));
 
-  app.get('/api/user/:userId/couponsId/', require('./api/users/user.couponsId'));
-  app.get('/api/user/:userId/couponsId/:maxResults', require('./api/users/user.couponsId'));
+  app.get('/api/users/:userId/couponsId/', require('./api/users/user.couponsId'));
+  app.get('/api/users/:userId/couponsId/:maxResults', require('./api/users/user.couponsId'));
 
-  app.get('/api/user/:userId/coupon/:emailId', require('./api/users/user.coupon'));
+  app.get('/api/users/:userId/coupons/:emailId', require('./api/users/user.coupon'));
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

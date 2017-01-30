@@ -1,10 +1,16 @@
 /**
  * Created by Carlos on 1/20/2017.
  */
+var google = require('googleapis');
+var gmail = google.gmail('v1');
+var OAuth2 = google.auth.OAuth2;
+const credentials = require('../../.credentials/google_credentials');
 
-var gmailClient = require("./gmail.client");
-var gmail = gmailClient.gmail;
-var oauth2Client  = gmailClient.oauth2Client;
+var oauth2Client = new OAuth2(
+  credentials.client_id,
+  credentials.client_secret,
+  credentials.redirect_uri[1]
+);
 
 module.exports = function(req, res){
 
@@ -27,8 +33,6 @@ module.exports = function(req, res){
        res.status(err.code).send({errors: err.errors});
       }
       else {
-        console.log(response);
-
         var reqRes = {
           data : response.payload
         };
