@@ -1,6 +1,7 @@
 node_modules
 public
 build
+client/assets/fonts/
 .tmp
 .sass-cache
 .idea
@@ -10,3 +11,4 @@ dist
 /server/config/local.env.js
 npm-debug.log
 coverage
+

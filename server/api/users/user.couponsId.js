@@ -13,29 +13,28 @@ var oauth2Client = new OAuth2(
   credentials.redirect_uri[1]
 );
 
-module.exports = function(req, res){
+module.exports = function (req, res){
 
-    var accessToken = req.headers.access_token;
-    var userId = req.params.userId;
-    var maxResults = req.params.maxResults || 1;
+  var accessToken = req.headers.access_token;
+  var userId = req.params.userId;
+  var maxResults = req.params.maxResults || 1;
 
-    oauth2Client.setCredentials({
-      access_token: accessToken
-    });
+  oauth2Client.setCredentials({
+    access_token: accessToken
+  });
 
-    gmail.users.messages.list({
-      labelIds : "CATEGORY_PROMOTIONS",
-      userId: userId,
-      auth: oauth2Client,
-      maxResults : maxResults
-    }, function (err, response) {
-
-      if (err){
-       console.log(err);
-       res.status(err.code).send({errors: err.errors});
-      }
-      else {
-        res.status(200).send(response.messages);
-      }
-    });
-}
+ gmail.users.messages.list({
+    labelIds: 'CATEGORY_PROMOTIONS',
+    userId: userId,
+    auth: oauth2Client,
+    maxResults: maxResults
+  }, function (err, response) {
+   if(err){
+     console.log(err);
+     res.status(err.code).send({errors: err.errors});
+   }
+   else {
+     res.status(200).send(response.messages);
+   }
+ });
+};

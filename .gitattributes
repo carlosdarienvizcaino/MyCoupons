@@ -1,4 +1,4 @@
-* text= eol=LF
+* text eol=lf
 
 # These files are text and should be normalized (Convert crlf => lf)
 *.php  text
@@ -41,3 +41,4 @@
 *.PDF  diff=astextplain
 *.rtf  diff=astextplain
 *.RTF  diff=astextplain
+>>>>>>> master
