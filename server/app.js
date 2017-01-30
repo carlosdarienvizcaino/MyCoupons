@@ -1,26 +1,41 @@
+/**
+ * Main application file
+ */
 
-var express = require('express');
-var app = express();
+'use strict';
 
-var bodyParser = require('body-parser');
+import express from 'express';
+import mongoose from 'mongoose';
+mongoose.Promise = require('bluebird');
+import config from './config/environment';
+import http from 'http';
 
-// Set port
-var port = process.env.PORT || 3002;
-
-// Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// Parse application/json
-app.use(bodyParser.json());
-
-app.use(express.static('js'));
-
-app.set('view engine', 'jade');
-
-// routes
-var routes = require('./routes')(app);
-
-// Start Gateway Service at http://localhost:3002
-app.listen(port, function() {
-  console.log("MyCoupons Listening on port" + port + " !");
+// Connect to MongoDB
+mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connection.on('error', function(err) {
+  console.error(`MongoDB connection error: ${err}`);
+  process.exit(-1); // eslint-disable-line no-process-exit
 });
+
+// Populate databases with sample data
+if(config.seedDB) {
+  require('./config/seed');
+}
+
+// Setup server
+var app = express();
+var server = http.createServer(app);
+require('./config/express').default(app);
+require('./routes')(app);
+
+// Start server
+function startServer() {
+  app.angularFullstack = server.listen(config.port, config.ip, function() {
+    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+  });
+}
+
+setImmediate(startServer);
+
+// Expose app
+exports = module.exports = app;

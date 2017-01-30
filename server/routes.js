@@ -10,16 +10,13 @@ var path = require('path');
 module.exports = function(app) {
 
   // Insert routes below
-  //app.use('/api/things', require('./api/thing'));
-  //app.use('/api/users', require('./api/user_example'));
-  //app.use('/auth', require('./auth').default);
+  app.use('/api/things', require('./api/thing'));
 
-  app.post('/api/auth/authcode/', require('./api/auth/authcode'));
+  app.post('/api/auth/authcode/', require('./api/auth/authcode.controller'));
 
-  app.get('/api/users/:userId/couponsId/', require('./api/users/user.couponsId'));
-  app.get('/api/users/:userId/couponsId/:maxResults', require('./api/users/user.couponsId'));
-
-  app.get('/api/users/:userId/coupons/:emailId', require('./api/users/user.coupon'));
+  app.get('/api/users/:userId/coupons/ids', require('./api/coupons/coupons.id.controller'));
+  app.get('/api/users/:userId/coupons/ids/:maxResults', require('./api/coupons/coupons.id.controller'));
+  app.get('/api/users/:userId/coupons/:id', require('./api/coupons/coupons.controller'));
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

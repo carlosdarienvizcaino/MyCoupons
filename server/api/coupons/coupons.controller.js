@@ -16,7 +16,7 @@ module.exports = function(req, res){
 
     var accessToken = req.headers.access_token;
     var userId = req.params.userId;
-    var emailId = req.params.emailId;
+    var id = req.params.id;
 
     oauth2Client.setCredentials({
       access_token: accessToken
@@ -24,7 +24,7 @@ module.exports = function(req, res){
 
     gmail.users.messages.get({
       userId: userId,
-      id : emailId,
+      id : id,
       auth: oauth2Client,
     }, function (err, response) {
 
