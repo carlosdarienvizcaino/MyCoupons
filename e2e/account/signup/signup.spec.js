@@ -8,7 +8,7 @@ describe('Signup View', function() {
 
   var loadPage = function() {
     browser.manage().deleteAllCookies();
-    browser.get(config.baseUrl + '/signup');
+    browser.get(config.baseUrl + '/Home');
     page = require('./signup.po');
   };
 
@@ -26,7 +26,7 @@ describe('Signup View', function() {
     }, 5000).then(done);
   });
 
-  it('should include signup form with correct inputs and submit button', function() {
+  it('should include Home form with correct inputs and submit button', function() {
     expect(page.form.name.getAttribute('type')).toBe('text');
     expect(page.form.name.getAttribute('name')).toBe('name');
     expect(page.form.email.getAttribute('type')).toBe('email');
@@ -45,7 +45,7 @@ describe('Signup View', function() {
       UserModel.remove().then(done);
     });
 
-    it('should signup a new user, log them in, and redirecting to "/"', function() {
+    it('should Home a new user, log them in, and redirecting to "/"', function() {
       page.signup(testUser);
 
       var navbar = require('../../components/navbar/navbar.po');
@@ -54,10 +54,10 @@ describe('Signup View', function() {
       expect(navbar.navbarAccountGreeting.getText()).toBe('Hello ' + testUser.name);
     });
 
-    it('should indicate signup failures', function() {
+    it('should indicate Home failures', function() {
       page.signup(testUser);
 
-      expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/signup');
+      expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/Home');
       expect(page.form.email.getAttribute('class')).toContain('ng-invalid-mongoose');
 
       var helpBlock = page.form.element(by.css('.form-group.has-error .help-block.ng-binding'));

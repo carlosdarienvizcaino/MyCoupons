@@ -5,7 +5,7 @@ var UserModel = require(config.serverConfig.root + '/server/api/user/user.model'
 
 describe('Logout View', function() {
   var login = function(user) {
-    browser.get(config.baseUrl + '/login');
+    browser.get(config.baseUrl + '/About');
     require('../login/login.po').login(user);
   };
 

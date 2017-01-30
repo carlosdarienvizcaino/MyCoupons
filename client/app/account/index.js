@@ -5,11 +5,11 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
 import routing from './account.routes';
-import login from './login';
-import settings from './settings';
-import signup from './signup';
+import About from './About';
+import Help from './Help';
+import Home from './Home';
 
-export default angular.module('myCouponsApp.account', [uiRouter, login, settings, signup])
+export default angular.module('myCouponsApp.account', [uiRouter, About, Help, Home])
   .config(routing)
   .run(function($rootScope) {
     'ngInject';

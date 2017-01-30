@@ -30,19 +30,10 @@ import './app.scss';
 angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
   account, admin, navbar, footer, main, constants, util
 ])
-  .config(routeConfig)
-  .run(function($rootScope, $location, Auth) {
-    'ngInject';
-    // Redirect to login if route requires auth and you're not logged in
 
-    $rootScope.$on('$stateChangeStart', function(event, next) {
-      Auth.isLoggedIn(function(loggedIn) {
-        if(next.authenticate && !loggedIn) {
-          $location.path('/login');
-        }
-      });
-    });
-  });
+
+  .config(routeConfig)
+
 
 angular.element(document)
   .ready(() => {
