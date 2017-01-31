@@ -1,1 +1,80 @@
-GOOGLE SIGNUP PAGE
+GOOGLE SIGN IN PAGE
+
+<html lang="en">
+<head>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="1067900185599-f5h58q36rfs9e8bg750gt25n8nmaupaq">
+</head>
+<body>
+
+<script>
+
+  function onSuccess(googleUser) {
+
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+
+    var authorizationRes = googleUser.getAuthResponse();
+    console.log(authorizationRes);
+
+    googleUser.grantOfflineAccess({
+      'scope': 'https://www.googleapis.com/auth/gmail.readonly',
+      'redirect_uri': 'postmessage'
+    })
+      .then(sendAuthorizationCodeToServer);
+  }
+
+  function onFailure(err){
+    console.log(err);
+  }
+
+  function sendAuthorizationCodeToServer(authCode){
+
+    var url = 'http://localhost:3002/api/auth/authcode';
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST',url,true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+
+      var res = JSON.parse(xhr.response);
+      console.log(xhr.response);
+      console.log(xhr.response['access_token']);
+      console.log('Signed in as: ' + xhr.responseText);
+    };
+
+    xhr.onerror = function(err){
+      console.log(err) ;
+    }
+
+    xhr.send("authCode=" + authCode['code']);
+
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  }
+
+</script>
+
+<center>
+
+<div class="g-signin2" data-onsuccess="onSuccess" data-theme="dark" data-width="240" data-height="50"
+     data-longtitle="true"></div>
+
+</center>
+
+
+
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+</html>
+
