@@ -12,6 +12,7 @@ export class MainController {
     this.$http = $http;
   }
 
+
   $onInit() {
     this.$http.get('/api/things')
       .then(response => {
