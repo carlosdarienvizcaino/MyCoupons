@@ -16,6 +16,7 @@ export default function routes($stateProvider) {
       controller: 'HomeController',
       controllerAs: 'vm'
     })
+
     .state('Help', {
       url: '/Help',
       template: require('./Help/Help.html'),
