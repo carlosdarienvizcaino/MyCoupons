@@ -19,7 +19,17 @@ export class NavbarComponent {
     this.getCurrentUser = Auth.getCurrentUserSync;
   }
 
+  isGoogleIsLoggedIn() {
+    if( gapi && gapi.auth2) {
+      var auth2 = gapi.auth2.getAuthInstance();
+      return auth2.isSignedIn.get();
+    }
+
+    return false;
+  }
 }
+
+
 
 export default angular.module('directives.navbar', [])
   .component('navbar', {

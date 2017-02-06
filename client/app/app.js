@@ -17,8 +17,11 @@ import {
 } from './app.config';
 
 import _Auth from '../components/auth/auth.module';
+import GoogleUser from '../components/google-user/google-user.module';
 import account from './account';
 import admin from './admin';
+import googleSignIn from '../components/google-sign-in/google-sign-in.component';
+import googleSignOut from '../components/google-sign-out/google-sign-out.component';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
@@ -28,7 +31,7 @@ import util from '../components/util/util.module';
 import './app.scss';
 
 angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  account, admin, navbar, footer, main, constants, util
+  GoogleUser, account, admin, googleSignIn, googleSignOut, navbar, footer, main, constants, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
