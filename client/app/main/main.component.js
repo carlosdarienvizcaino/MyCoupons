@@ -4,32 +4,39 @@ import routing from './main.routes';
 
 export class MainController {
 
-  awesomeThings = [];
-  newThing = '';
+  coupons = [ 'coupon1', 'coupon2'];
 
   /*@ngInject*/
-  constructor($http) {
+  constructor($http, GoogleUser) {
     this.$http = $http;
+    this.googleUser = GoogleUser;
   }
 
   $onInit() {
-    this.$http.get('/api/things')
-      .then(response => {
-        this.awesomeThings = response.data;
-      });
+    var that = this;
+    setTimeout(function(){
+      that.loadCoupons();
+    }, 1000);
   }
 
-  addThing() {
-    if(this.newThing) {
-      this.$http.post('/api/things', {
-        name: this.newThing
-      });
-      this.newThing = '';
+  loadCoupons() {
+
+    if(this.googleUser.hasCredentials()) {
+
+      var userEmail = this.googleUser.getEmail();
+      var accessToken = this.googleUser.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/ids`;
+      var options = {
+        headers : {
+          'Content-Type': 'application/json',
+          'access_token': accessToken
+        }
+      };
+      this.$http.get(url,options)
+        .then(res => {
+          this.coupons = res.data;
+        });
     }
-  }
-
-  deleteThing(thing) {
-    this.$http.delete(`/api/things/${thing._id}`);
   }
 }
 

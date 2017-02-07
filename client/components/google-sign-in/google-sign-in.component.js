@@ -8,15 +8,16 @@ import angular from 'angular';
 
 export class GoogleSignIn {
 
-  constructor($window, GoogleUser){
+  constructor($window, GoogleUser, $state){
     'ngInject';
 
     $window.onSignIn = this.onSignIn;
     $window.onSignInFailure = this.onSignInFailure;
-    this.GoogleUser = GoogleUser;
+    $window.$state = $state
     $window.GoogleUser = GoogleUser;
     $window.onload = this.onload;
   }
+
 
   onload() {
     gapi.signin2.render('my-signin2', {
@@ -30,17 +31,20 @@ export class GoogleSignIn {
     });
   }
 
+
   onSignIn(googleUser) {
 
     var profile = googleUser.getBasicProfile();
-    var authorizationRes = googleUser.getAuthResponse();
-
-    GoogleUser.setUserCredentials({
-      fullName: profile.getName(),
-      imageURL: profile.getImageUrl(),
-      email: profile.getEmail(),
-      accessToken: authorizationRes['access_token']
-    });
+    googleUser.reloadAuthResponse()
+      .then(authorizationRes => {
+        GoogleUser.setUserCredentials({
+          fullName: profile.getName(),
+          imageURL: profile.getImageUrl(),
+          email: profile.getEmail(),
+          accessToken: authorizationRes['access_token']
+        });
+          $state.go('main');
+      });
   }
 
   onSignInFailure(){

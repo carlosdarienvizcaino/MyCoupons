@@ -8,7 +8,7 @@ class _User {
   $promise = undefined;
 }
 
-export function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
+export function AuthService($location, $http, $cookies, $q, appConfig, Util, User, $state) {
   'ngInject';
 
   var safeCb = Util.safeCb;
@@ -63,8 +63,10 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * Delete access token and user_example info
      */
     logout() {
-      $cookies.remove('token');
-      currentUser = new _User();
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
     },
 
     /**
@@ -150,6 +152,23 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
           safeCb(callback)(is);
           return is;
         });
+    },
+
+    isGoogleLoggedIn(callback) {
+      setTimeout(function(){
+        var GoogleAuth = gapi.auth2.getAuthInstance();
+        callback(GoogleAuth.isSignedIn.get());
+      },1000);
+    },
+
+    isGoogleLoggedInBoolean() {
+      try {
+        var GoogleAuth = gapi.auth2.getAuthInstance();
+        return (GoogleAuth.isSignedIn.get());
+      }
+      catch (e){
+      }
+      return false;
     },
 
     /**

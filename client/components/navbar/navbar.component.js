@@ -13,19 +13,19 @@ export class NavbarComponent {
 
   constructor(Auth) {
     'ngInject';
-
-    this.isLoggedIn = Auth.isLoggedInSync;
-    this.isAdmin = Auth.isAdminSync;
-    this.getCurrentUser = Auth.getCurrentUserSync;
+    this.Auth = Auth;
   }
 
-  isGoogleIsLoggedIn() {
-    if( gapi && gapi.auth2) {
-      var auth2 = gapi.auth2.getAuthInstance();
-      return auth2.isSignedIn.get();
-    }
-
-    return false;
+  isGoogleLoggedIn() {
+    return this.Auth.isGoogleLoggedInBoolean();
+    // try {
+    //   var GoogleAuth = gapi.auth2.getAuthInstance();
+    //   return (GoogleAuth.isSignedIn.get());
+    // }
+    // catch (e){
+    //    console.log(e);
+    // }
+    // return false;
   }
 }
 

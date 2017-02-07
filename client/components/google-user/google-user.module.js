@@ -4,15 +4,33 @@
 
 export function GoogleUser() {
 
-  var fullName, imageURL;
-  var that = this;
-
+  const UNKNOWN = 'UNKNOWN';
   return {
     setUserCredentials(info) {
-      that.fullName    = info.fullName    || 'UNKNOW NAME';
-      this.imageURL    = info.imageURL    || 'UNKNOW IMAGE';
-      this.email       = info.email       || 'UNKNOW EMAIL';
-      this.accessToken = info.accessToken || 'UNKNOW ACCESS_TOKEN';
+      this.fullName    = info.fullName    || UNKNOWN;
+      this.imageURL    = info.imageURL    || UNKNOWN;
+      this.email       = info.email       || UNKNOWN;
+      this.accessToken = info.accessToken || UNKNOWN;
+    },
+
+    getFullName(){
+      return this.fullName;
+    },
+
+    getImageURL() {
+      return this.imageURL ;
+    },
+
+    getEmail() {
+      return this.email;
+    },
+
+    getAccessToken() {
+      return this.accessToken;
+    },
+
+    hasCredentials() {
+      return this.getAccessToken() !== UNKNOWN && this.getAccessToken() !== undefined;
     }
   };
 }

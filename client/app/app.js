@@ -21,7 +21,6 @@ import GoogleUser from '../components/google-user/google-user.module';
 import account from './account';
 import admin from './admin';
 import googleSignIn from '../components/google-sign-in/google-sign-in.component';
-import googleSignOut from '../components/google-sign-out/google-sign-out.component';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
@@ -31,17 +30,21 @@ import util from '../components/util/util.module';
 import './app.scss';
 
 angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  GoogleUser, account, admin, googleSignIn, googleSignOut, navbar, footer, main, constants, util
+  GoogleUser, account, admin, googleSignIn, navbar, footer, main, constants, util
 ])
   .config(routeConfig)
-  .run(function($rootScope, $location, Auth) {
+  .run(function($rootScope, $location, Auth, $state) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
 
     $rootScope.$on('$stateChangeStart', function(event, next) {
-      Auth.isLoggedIn(function(loggedIn) {
-        if(next.authenticate && !loggedIn) {
-          $location.path('/login');
+
+      Auth.isGoogleLoggedIn(function(isLoggedIn){
+        if (!isLoggedIn){
+          $state.go('login');
+        }
+        else {
+         $state.go('main');
         }
       });
     });
