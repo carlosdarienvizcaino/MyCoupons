@@ -19,7 +19,7 @@ export default class LoginController {
     this.$window = $window;
   }
 
-  $onInit(){
+  $onInit() {
     this.loadGoogleSignInButton();
   }
 

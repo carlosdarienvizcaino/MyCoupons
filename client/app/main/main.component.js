@@ -7,34 +7,21 @@ export class MainController {
   coupons = [ 'coupon1', 'coupon2'];
 
   /*@ngInject*/
-  constructor($http, GoogleUser) {
+  constructor($http, GoogleUser, GoogleUserResources) {
     this.$http = $http;
     this.googleUser = GoogleUser;
+    this.googleUserResources = GoogleUserResources;
   }
 
   $onInit() {
-    var that = this;
-    setTimeout(function(){
-      that.loadCoupons();
-    }, 1000);
-  }
-
-  loadCoupons() {
 
     if(this.googleUser.hasCredentials()) {
-
-      var userEmail = this.googleUser.getEmail();
-      var accessToken = this.googleUser.getAccessToken();
-      var url = `/api/users/${userEmail}/coupons/ids`;
-      var options = {
-        headers : {
-          'Content-Type': 'application/json',
-          'access_token': accessToken
-        }
-      };
-      this.$http.get(url,options)
+      this.googleUserResources.queryMostRecentCouponsIds(this.googleUser,5)
         .then(res => {
           this.coupons = res.data;
+        })
+        .catch(error => {
+          console.log(error);
         });
     }
   }

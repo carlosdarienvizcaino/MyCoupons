@@ -2,6 +2,10 @@
  * Created by Carlos on 2/4/2017.
  */
 
+import {
+  GoogleUserResources
+} from './google-user.service';
+
 export function GoogleUser() {
 
   const UNKNOWN = 'UNKNOWN';
@@ -37,4 +41,5 @@ export function GoogleUser() {
 
 export default angular.module('myCouponsApp.googleUser', [])
   .factory('GoogleUser', GoogleUser)
+  .factory('GoogleUserResources', GoogleUserResources)
   .name;

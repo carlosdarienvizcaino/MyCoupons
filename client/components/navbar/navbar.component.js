@@ -6,26 +6,14 @@ import angular from 'angular';
 export class NavbarComponent {
   menu = [{
     title: 'Home',
-    state: 'main'
+    state: 'home'
   }];
 
   isCollapsed = true;
 
   constructor(Auth) {
     'ngInject';
-    this.Auth = Auth;
-  }
-
-  isGoogleLoggedIn() {
-    return this.Auth.isGoogleLoggedInBoolean();
-    // try {
-    //   var GoogleAuth = gapi.auth2.getAuthInstance();
-    //   return (GoogleAuth.isSignedIn.get());
-    // }
-    // catch (e){
-    //    console.log(e);
-    // }
-    // return false;
+    this.isGoogleLoggedIn = Auth.isGoogleLoggedIn;
   }
 }
 

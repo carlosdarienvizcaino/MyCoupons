@@ -33,21 +33,12 @@ angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiB
   GoogleUser, account, admin, googleSignIn, navbar, footer, main, constants, util
 ])
   .config(routeConfig)
-  .run(function($rootScope, $location, Auth, $state) {
+  .run(function($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
 
-    $rootScope.$on('$stateChangeStart', function(event, next) {
+    Auth.initGoogleAuthentication();
 
-      Auth.isGoogleLoggedIn(function(isLoggedIn){
-        if (!isLoggedIn){
-          $state.go('login');
-        }
-        else {
-         $state.go('main');
-        }
-      });
-    });
   });
 
 angular.element(document)
