@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+<head>
+</head>
 <body>
-  <div class="post-it">POST IT HERE</div>
+  <div class="format" ng-repeat="i in $ctrl.amountTiles">
+      <div id="tiles" class="col-sm-3 col-md-6" ng-repeat="item in $ctrl.fields" ui-sref-active="active">
+        <p id ="title">
+          {{item.title}}
+        </p>
+        <div>
+          <img class="imageFormat" src="{{item.image}}">
+        </div>
+        <p class="descripFormat">
+          {{item.description}}
+        </p>
+        <p>
+          Expiration Date: {{item.expiration}}
+        </p>
+        <p><a class="tileField2" href="{{item.link}}">
+          Find Out More!
+        </a></p>
+      </div>
+  </div>
 </body>
 </html>
