@@ -4,27 +4,28 @@ import routing from './main.routes';
 
 export class MainController {
 
-  coupons = [ 'coupon1', 'coupon2'];
+  couponsId = ['couponId1'];
 
   /*@ngInject*/
-  constructor($http, GoogleUser, GoogleUserResources) {
-    this.$http = $http;
+  constructor(GoogleUser, GoogleUserResources) {
     this.googleUser = GoogleUser;
     this.googleUserResources = GoogleUserResources;
   }
 
   $onInit() {
 
+    var that = this;
     if(this.googleUser.hasCredentials()) {
       this.googleUserResources.queryMostRecentCouponsIds(this.googleUser,5)
         .then(res => {
-          this.coupons = res.data;
+          this.couponsId = res.data;
         })
         .catch(error => {
           console.log(error);
         });
     }
   }
+
 }
 
 export default angular.module('myCouponsApp.main', [uiRouter])

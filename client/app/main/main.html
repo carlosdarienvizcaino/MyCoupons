@@ -6,12 +6,14 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Coupons Id:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="coupon in $ctrl.coupons">
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="coupon in $ctrl.couponsId">
         <li>{{coupon.id}}</li>
       </ul>
     </div>
   </div>
-</div>
 
+  <coupon coupon-id="$ctrl.couponsId[0].id"></coupon>
+
+</div>
 
 

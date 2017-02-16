@@ -37,6 +37,8 @@ export class GoogleSignIn {
     var profile = googleUser.getBasicProfile();
     googleUser.reloadAuthResponse()
       .then(authorizationRes => {
+        console.log(authorizationRes['access_token']);
+
         GoogleUser.setUserCredentials({
           fullName: profile.getName(),
           imageURL: profile.getImageUrl(),
