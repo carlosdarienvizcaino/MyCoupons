@@ -6,7 +6,7 @@
 
 import angular from 'angular';
 
-export class Coupon{
+export class FullCoupon{
 
   mostRecentCouponHtml = [];
 
@@ -61,10 +61,10 @@ export class Coupon{
 
 }
 
-export default angular.module('directives.coupon', [])
-  .component('coupon', {
-    template : require('./coupon.html'),
-    controller: Coupon,
+export default angular.module('directives.fullCoupon', [])
+  .component('fullCoupon', {
+    template : require('./full-coupon.html'),
+    controller: FullCoupon,
     bindings : {
      couponId: '<' // one way binding
     }
