@@ -3,24 +3,39 @@
 <head>
 </head>
 <body>
-  <div class="format" ng-repeat="i in $ctrl.amountTiles">
-      <div id="tiles" class="col-sm-3 col-md-6" ng-repeat="item in $ctrl.fields" ui-sref-active="active">
-        <p id ="title">
-          {{item.title}}
-        </p>
-        <div>
-          <img class="imageFormat" src="{{item.image}}">
+  <div class="container">
+    <div class="row" ng-repeat="item in $ctrl.fields">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel coupon">
+          <div class="panel-heading" id="head">
+            <div class="panel-title" id="title">
+              <img src="{{item.logo}}"></img>
+              <span class="hidden-xs">{{item.title}}</span>
+              <span class="visible-xs">{{item.title}}</span>
+            </div>
+          </div>
+          <div class="panel-body">
+            <img src="{{item.image}}" class="coupon-img img-rounded">
+            <div class="col-md-12 well well-sm">
+              <div id="business-info">
+                <ul>
+                  <li><span><i class="fa fa-phone"></i> {{item.phone}}</span></li>
+                  <li><span><i class="fa fa-map-marker"></i> {{item.address}}</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <p class="disclosure">{{item.description}}</p>
+            </div>
+          </div>
+          <div class="panel-footer moreInfo">
+            <span><a href="#" class="fa fa-trash fa-2x moreInfoL"></a></span>
+            <span class="moreInfoC">Expires: {{item.expiration}}</span>
+            <span><button ng-click="$ctrl.showCoupon()" class="btn-link moreInfoR">See Original Coupon</button></span>
+          </div>
         </div>
-        <p class="descripFormat">
-          {{item.description}}
-        </p>
-        <p>
-          Expiration Date: {{item.expiration}}
-        </p>
-        <p><a class="tileField2" href="{{item.link}}">
-          Find Out More!
-        </a></p>
       </div>
+    </div>
   </div>
 </body>
 </html>
