@@ -4,11 +4,10 @@
 
 'use strict';
 
-var errors =  require('./components/errors');
+var errors = require('./components/errors');
 var path = require('path');
 
 module.exports = function(app) {
-
   // Insert routes below
   app.use('/api/things', require('./api/thing'));
 
@@ -27,4 +26,4 @@ module.exports = function(app) {
     .get((req, res) => {
       res.sendFile(path.resolve(`${app.get('appPath')}/index.html`));
     });
-}
+};
