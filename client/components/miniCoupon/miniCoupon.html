@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+<div class="container">
+  <div class="row" ng-repeat="item in $ctrl.fields">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel coupon">
+        <div class="panel-heading" id="head">
+          <div class="panel-title" id="title">
+            <img src="{{item.logo}}"></img>
+            <span class="hidden-xs">{{item.title}}</span>
+            <span class="visible-xs">{{item.title}}</span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <img src="{{item.image}}" class="coupon-img img-rounded">
+          <div class="col-md-12 well well-sm">
+            <div id="business-info">
+              <ul>
+                <li><span><i class="fa fa-phone"></i> {{item.phone}}</span></li>
+                <li><span><i class="fa fa-map-marker"></i> {{item.address}}</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <p class="disclosure">{{item.description}}</p>
+          </div>
+        </div>
+        <div class="panel-footer moreInfo">
+          <span><a href="#" class="fa fa-trash fa-2x moreInfoL"></a></span>
+          <span class="moreInfoC">Expires: {{item.expiration}}</span>
+          <span><button ng-click="$ctrl.showCoupon()" class="btn-link moreInfoR">See Original Coupon</button></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

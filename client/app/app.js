@@ -21,7 +21,7 @@ import account from './account';
 import admin from './admin';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
-import home from '../components/home/home.component';
+import miniCoupon from '../components/miniCoupon/miniCoupon.component';
 import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
@@ -29,7 +29,7 @@ import util from '../components/util/util.module';
 import './app.scss';
 
 angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  account, admin, navbar, footer, home, main, constants, util
+  account, admin, navbar, footer, miniCoupon, main, constants, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

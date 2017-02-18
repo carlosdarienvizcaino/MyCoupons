@@ -1,11 +1,11 @@
 /**
- * Created by NicholasSmith on 2/5/17.
+ * Created by NicholasSmith on 2/18/17.
  */
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import routing from './home.routes';
+import routing from './miniCoupon.routes';
 
-export class HomeComponent {
+export class miniCouponComponent {
   fields = [{
     title: 'Coupon 1',
     image: 'https://static.pexels.com/photos/46710/pexels-photo-46710.jpeg',
@@ -54,10 +54,10 @@ export class HomeComponent {
   }
 }
 
-export default angular.module('myCouponsApp.home', [uiRouter])
+export default angular.module('myCouponsApp.miniCoupon', [uiRouter])
   .config(routing)
-  .component('home', {
-    template: require('./home.html'),
-    controller: HomeComponent
+  .component('miniCoupon', {
+    template: require('./miniCoupon.html'),
+    controller: miniCouponComponent
   })
   .name;
