@@ -17,8 +17,11 @@ import {
 } from './app.config';
 
 import _Auth from '../components/auth/auth.module';
+import GoogleUser from '../components/google-user/google-user.module';
 import account from './account';
 import admin from './admin';
+import googleSignIn from '../components/google-sign-in/google-sign-in.component';
+import fullCoupon from '../components/full-coupon/full-coupon.component';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import miniCoupon from '../components/miniCoupon/miniCoupon.component';
@@ -29,20 +32,15 @@ import util from '../components/util/util.module';
 import './app.scss';
 
 angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  account, admin, navbar, footer, miniCoupon, main, constants, util
+  GoogleUser, account, admin, googleSignIn, fullCoupon, navbar, footer, miniCoupon, main, constants, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
 
-    $rootScope.$on('$stateChangeStart', function(event, next) {
-      Auth.isLoggedIn(function(loggedIn) {
-        if(next.authenticate && !loggedIn) {
-          $location.path('/login');
-        }
-      });
-    });
+    Auth.initGoogleAuthentication();
+
   });
 
 angular.element(document)

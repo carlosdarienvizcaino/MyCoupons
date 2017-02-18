@@ -13,10 +13,29 @@ export default class LoginController {
 
 
   /*@ngInject*/
-  constructor(Auth, $state) {
+  constructor(Auth, $state, $window) {
     this.Auth = Auth;
     this.$state = $state;
+    this.$window = $window;
   }
+
+  $onInit() {
+    this.loadGoogleSignInButton();
+  }
+
+  loadGoogleSignInButton() {
+    setTimeout(loadButton,10);
+    var that = this;
+    function loadButton(){
+      that.$window.onload();
+    }
+  }
+
+
+
+
+
+
 
   login(form) {
     this.submitted = true;

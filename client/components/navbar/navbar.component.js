@@ -13,12 +13,11 @@ export class NavbarComponent {
 
   constructor(Auth) {
     'ngInject';
-
-    this.isLoggedIn = Auth.isLoggedInSync;
-    this.isAdmin = Auth.isAdminSync;
-    this.getCurrentUser = Auth.getCurrentUserSync;
+    this.isGoogleLoggedIn = Auth.isGoogleLoggedIn;
   }
 }
+
+
 
 export default angular.module('directives.navbar', [])
   .component('navbar', {

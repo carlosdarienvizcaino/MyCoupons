@@ -8,7 +8,7 @@ class _User {
   $promise = undefined;
 }
 
-export function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
+export function AuthService($location, $http, $cookies, $q, appConfig, Util, User, $rootScope) {
   'ngInject';
 
   var safeCb = Util.safeCb;
@@ -28,7 +28,34 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
   }
 
   var Auth = {
-    /**
+
+    initGoogleAuthentication() {
+      gapi.load('auth2', function () {
+        var auth2 = gapi.auth2.init({
+          client_id: '1067900185599-f5h58q36rfs9e8bg750gt25n8nmaupaq.apps.googleusercontent.com',
+          scope: 'profile'
+        });
+        $rootScope.$broadcast('GoogleAuthInitializedEvent', auth2);
+      });
+    },
+
+    logoutFromGoogle() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+      });
+    },
+
+    isGoogleLoggedIn() {
+      try {
+        var GoogleAuth = gapi.auth2.getAuthInstance();
+        return (GoogleAuth.isSignedIn.get());
+      }
+      catch (e){
+      }
+      return false;
+    },
+
+  /**
      * Authenticate user_example and save token
      *
      * @param  {Object}   user_example     - login info
@@ -53,20 +80,11 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
           return user;
         })
         .catch(err => {
-          Auth.logout();
+          Auth.logoutFromGoogle();
           safeCb(callback)(err.data);
           return $q.reject(err.data);
         });
     },
-
-    /**
-     * Delete access token and user_example info
-     */
-    logout() {
-      $cookies.remove('token');
-      currentUser = new _User();
-    },
-
     /**
      * Create a new user_example
      *
@@ -80,7 +98,7 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
         currentUser = User.get();
         return safeCb(callback)(null, user);
       }, function(err) {
-        Auth.logout();
+        Auth.logoutFromGoogle();
         return safeCb(callback)(err);
       })
         .$promise;
@@ -152,6 +170,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
         });
     },
 
+
+
     /**
      * Check if a user_example is logged in
      *
@@ -215,7 +235,7 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      */
     getToken() {
       return $cookies.get('token');
-    }
+    },
   };
 
   return Auth;

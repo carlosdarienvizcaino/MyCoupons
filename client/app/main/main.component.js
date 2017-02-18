@@ -4,33 +4,28 @@ import routing from './main.routes';
 
 export class MainController {
 
-  awesomeThings = [];
-  newThing = '';
+  couponsId = ['couponId1'];
 
   /*@ngInject*/
-  constructor($http) {
-    this.$http = $http;
+  constructor(GoogleUser, GoogleUserResources) {
+    this.googleUser = GoogleUser;
+    this.googleUserResources = GoogleUserResources;
   }
 
   $onInit() {
-    this.$http.get('/api/things')
-      .then(response => {
-        this.awesomeThings = response.data;
-      });
-  }
 
-  addThing() {
-    if(this.newThing) {
-      this.$http.post('/api/things', {
-        name: this.newThing
-      });
-      this.newThing = '';
+    var that = this;
+    if(this.googleUser.hasCredentials()) {
+      this.googleUserResources.queryMostRecentCouponsIds(this.googleUser,5)
+        .then(res => {
+          this.couponsId = res.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 
-  deleteThing(thing) {
-    this.$http.delete(`/api/things/${thing._id}`);
-  }
 }
 
 export default angular.module('myCouponsApp.main', [uiRouter])

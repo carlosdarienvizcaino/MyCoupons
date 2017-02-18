@@ -31,4 +31,5 @@ export default angular.module('myCouponsApp.auth', [constants, util, ngCookies, 
   .factory('Auth', AuthService)
   .factory('User', UserResource)
   .config(['$httpProvider', addInterceptor])
+  .run(routerDecorator)
   .name;

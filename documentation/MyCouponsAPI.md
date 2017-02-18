@@ -58,8 +58,12 @@ ___
  ```javascript
     status : 200
     {
-      'sub': <user subject id>,
-      'data': <email payload data>
+      'id': <email id>,
+      'data': [
+               'base64Url string',
+               'base64Url string'
+              ],
+      'errorMessage': <error message>
     }
  ```
  
