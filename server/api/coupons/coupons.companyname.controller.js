@@ -1,5 +1,5 @@
 /**
- * Created by Carlos on 1/20/2017.
+ * Created by Lazaro on 2/18/2017.
  */
 
 var google = require('googleapis');
@@ -13,30 +13,33 @@ var oauth2Client = new OAuth2(
   credentials.redirect_uri[1]
 );
 
-module.exports = function (req, res){
+module.exports = function(req, res){
 
   var accessToken = req.headers.access_token;
   var userId = req.params.userId;
-  var maxResults = req.params.maxResults || 1;
-  var query = req.params.company;
+  var id = req.params.id;
 
   oauth2Client.setCredentials({
     access_token: accessToken
   });
 
- gmail.users.messages.list({
-    labelIds: 'CATEGORY_PROMOTIONS',
+  gmail.users.messages.get({
     userId: userId,
+    id : id,
     auth: oauth2Client,
-    maxResults: maxResults,
-    q : query
+    format: 'metadata',
+    metadataHeaders: 'From',
   }, function (err, response) {
-   if(err){
-     console.log(err);
-     res.status(err.code).send({errors: err.errors});
-   }
-   else {
-     res.status(200).send(response.messages);
-   }
- });
-};
+
+    if (err){
+      console.log(err);
+      res.status(err.code).send({errors: err.errors});
+    }
+    else {
+      var reqRes = {
+        data : response.payload
+      };
+      res.status(200).send(reqRes);
+    }
+  });
+}

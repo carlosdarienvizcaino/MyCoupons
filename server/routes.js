@@ -14,6 +14,8 @@ module.exports = function(app) {
   app.post('/api/auth/authcode/', require('./api/auth/authcode.controller'));
 
   app.get('/api/users/:userId/coupons/ids', require('./api/coupons/coupons.id.controller'));
+  app.get('/api/users/:userId/coupons/ids/:maxResults/:company', require('./api/coupons/coupons.id.controller'));
+  app.get('/api/users/:userId/coupons/company/:id', require('./api/coupons/coupons.companyname.controller'));
   app.get('/api/users/:userId/coupons/ids/:maxResults', require('./api/coupons/coupons.id.controller'));
   app.get('/api/users/:userId/coupons/:id', require('./api/coupons/coupons.controller'));
 

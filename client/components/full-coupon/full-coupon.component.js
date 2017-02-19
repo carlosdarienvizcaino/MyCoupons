@@ -30,12 +30,12 @@ export class FullCoupon{
   queryCouponWithId(user, couponId) {
     var that = this;
     this.googleUserResources.queryCouponWithId(user, couponId)
-        .then(response => {
-          that.mostRecentCouponHtml = this.convertCouponFromBase64UrlToHtml(response.data)
-        })
-        .catch(error =>{
-          console.log(error);
-        });
+      .then(response => {
+        that.mostRecentCouponHtml = this.convertCouponFromBase64UrlToHtml(response.data)
+      })
+      .catch(error =>{
+        console.log(error);
+      });
   }
 
   convertCouponFromBase64UrlToHtml(couponDataInBase64Url) {
@@ -56,7 +56,7 @@ export class FullCoupon{
   }
 
   couponIdIsNotUndefined(changesObj) {
-     return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
+    return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
   }
 
 }
@@ -66,7 +66,7 @@ export default angular.module('directives.fullCoupon', [])
     template : require('./full-coupon.html'),
     controller: FullCoupon,
     bindings : {
-     couponId: '<' // one way binding
+      couponId: '<' // one way binding
     }
   })
   .name;
