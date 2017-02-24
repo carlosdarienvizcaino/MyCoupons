@@ -1,98 +1,33 @@
 
 # MyCoupons API Doc
+___
+**Resources**
 
+**GET** [http:domain:port//api/users/:userId/coupons/ids](api/Coupons.md)
 
-### Implemented
+**GET** [http:domain:port//api/users/:userId/coupons/ids/:maxResults](api/Coupons.md)
+
+**GET** [http:domain:port//api/users/:userId/coupons/:id](api/Coupons.md)
+
+**GET** [http:domain:port//api/users/:userId/coupons/minimal/:id](api/Coupons.md)
+
+**GET** [http:domain:port//api/users/:userId/companies/new/:afterDate](api/Companies.md)
+
+**GET** [http:domain:port//api/users/:userId/companies/:afterDate](api/Companies.md)
 
 ___
-**GET** http:domain:port//api/users/:userId/coupons/ids
+**Modifications**
 
-  **Description:** Get the most recent coupon id
-  
-  *Headers*
-  ```json
-    Content-Type application/json
-    access_token 
-  ```
- *Response*
- ```javascript
-    status : 200
-    [
-      {
-        'id': <email id>,
-        'threadId': <email thread id>
-      }
-    ]
- ```
+**POST** [http:domain:port//api/users/:userId/coupons/modify](api/Coupons.md)
+
+**DELETE** [http:domain:port//api/users/:userId/coupons/:id](api/Coupons.md)
+
+**DELETE** [http:domain:port//api/users/:userId/coupons/before/:beforeDate](api/Coupons.md)
+
 ___
-**GET** http:domain:port//api/users/:userId/coupons/ids/:maxResults
-  
-  **Description:** Get the most recent maxResults coupon ids
-  
-  *Headers*
-  ```json
-    Content-Type application/json
-    access_token 
-  ```
- *Response*
- ```javascript
-    status : 200
-    [
-      {
-        'id': <email id>,
-        'threadId': <email thread id>
-      },
-    ]
- ```
-___
-**GET** http:domain:port//api/users/:userId/coupons/:id
-  
-  **Description:** Get the payload for a coupon with the provider id
-    
-  *Headers*
-  ```json
-    Content-Type application/json
-    access_token 
-  ```
- *Response*
- ```javascript
-    status : 200
-    {
-      'id': <email id>,
-      'data': [
-               'base64Url string',
-               'base64Url string'
-              ],
-      'errorMessage': <error message>
-    }
- ```
- 
- ___
-**POST** http:domain:port//api/auth/authcode
-  
-  **Description:** Get the payload for a coupon with the provider id
-    
-  *Headers*
-  ```json
-    Content-Type application/json 
-  ```
-  
-  *Body*
-  ```javascript
-     {
-      'authCode': <user one time authentication code provided by google>
-     }
-  ```
-  
- *Response*
- ```javascript
-    status : 200
-    {
-      'sub': <user subject id>,
-      'access_token': <user access token>
-    }
- ```
+~~Authentication~~
 
-### To be Implemented
+POST [http:domain:port//api/auth/authcode](api/Authentication.md)
 
-**DELETE** http:domain:port//api/users/:userId/coupons/after/:startDate
+
+
