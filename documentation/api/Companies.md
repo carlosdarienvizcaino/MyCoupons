@@ -1,8 +1,8 @@
 **Companies EndPoints**
 ___
-**GET** http:domain:port//api/users/:userId/companies/new/:afterDate
+**GET** http:domain:port//api/users/:userId/companies/newCoupons/:beforeDays
 
-**Description:** Get new coupons per company after a date.
+**Description:** Gets a list of companies sort by domain with their new coupons before a given day. 
   
   *Headers*
   ```json

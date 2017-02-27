@@ -11,13 +11,25 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/things', require('./api/thing'));
 
+  // Resources
+    // Coupons
+    app.get('/api/users/:userId/coupons/ids', require('./api/coupons/coupons.id.controller'));
+    app.get('/api/users/:userId/coupons/ids/:maxResults/:company', require('./api/coupons/coupons.id.controller'));
+    app.get('/api/users/:userId/coupons/ids/:maxResults', require('./api/coupons/coupons.id.controller'));
+    app.get('/api/users/:userId/coupons/:id', require('./api/coupons/coupons.controller'));
+    app.get('/api/users/:userId/coupons/minimal/:id', require('./api/coupons/minimal/minimal-coupon.controller'));
+
+    // Companies
+    app.get('/api/users/:userId/coupons/company/:id', require('./api/coupons/coupons.companyname.controller'));
+    app.get('/api/users/:userId/companies/:beforeDay', require('./api/companies/companies-all-coupons.controller'));
+    app.get('/api/users/:userId/companies/newCoupons/:beforeDay', require('./api/companies/companies-new-coupons.controller'));
+
+  // Modification
+  app.post('/api/users/:userId/coupons/modify', require('./api/coupons/coupons-modify.controller'));
+
+  // Authentication
   app.post('/api/auth/authcode/', require('./api/auth/authcode.controller'));
 
-  app.get('/api/users/:userId/coupons/ids', require('./api/coupons/coupons.id.controller'));
-  app.get('/api/users/:userId/coupons/ids/:maxResults/:company', require('./api/coupons/coupons.id.controller'));
-  app.get('/api/users/:userId/coupons/company/:id', require('./api/coupons/coupons.companyname.controller'));
-  app.get('/api/users/:userId/coupons/ids/:maxResults', require('./api/coupons/coupons.id.controller'));
-  app.get('/api/users/:userId/coupons/:id', require('./api/coupons/coupons.controller'));
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')

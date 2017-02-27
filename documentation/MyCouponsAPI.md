@@ -11,7 +11,7 @@ ___
 
 **GET** [http:domain:port//api/users/:userId/coupons/minimal/:id](api/Coupons.md)
 
-**GET** [http:domain:port//api/users/:userId/companies/new/:afterDate](api/Companies.md)
+**GET** [http:domain:port//api/users/:userId/companies/newCoupons/:beforeDays](api/Companies.md)
 
 **GET** [http:domain:port//api/users/:userId/companies/:afterDate](api/Companies.md)
 
