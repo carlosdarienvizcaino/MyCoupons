@@ -1,24 +1,20 @@
-<header class="hero-unit" id="banner">
-  Main Page :P
-</header>
 
 <div class="container">
+
   <div class="row">
     <div class="col-lg-12">
+
       <div class = "form-group">
         <input type= "text" ng-model="company" placeholder="Search" class = "form-group"/>
         <button type="submit" ng-click="$ctrl.runsearch(company)" ui-sref="main" >Get Search</button>
       </div>
 
-      <ul ng-repeat="coupon in $ctrl.obj">
-        <li><h4>CompanyNames: {{coupon.companyName}}</h4></li>
-        <li><h4>CompanyDomains: {{coupon.companyDomain}}</h4></li>
-        <li><full-coupon coupon-id = "coupon.ID"></full-coupon></li>
-      </ul>
+      <div ng-repeat="coupon in $ctrl.coupons ">
+        <mini-coupon coupon-id=coupon.id> </mini-coupon>
+      </div>
+
+    </div>
   </div>
-
-
-</div>
 </div>
 
 

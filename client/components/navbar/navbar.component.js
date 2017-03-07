@@ -5,8 +5,6 @@ import angular from 'angular';
 
 export class NavbarComponent {
   menu = [{
-    title: 'Coupon Listing',
-    state: 'miniCoupon'
   }];
 
   isCollapsed = true;
@@ -16,8 +14,6 @@ export class NavbarComponent {
     this.isGoogleLoggedIn = Auth.isGoogleLoggedIn;
   }
 }
-
-
 
 export default angular.module('directives.navbar', [])
   .component('navbar', {

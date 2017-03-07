@@ -63,6 +63,20 @@ export function GoogleUserResources($http) {
         }
       };
       return $http.get(url, options);
+    },
+
+    queryMiniCouponWithId(user, couponId) {
+
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/minimal/${couponId}`;
+      var options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'access_token': accessToken
+        }
+      };
+      return $http.get(url, options);
     }
   }
 
