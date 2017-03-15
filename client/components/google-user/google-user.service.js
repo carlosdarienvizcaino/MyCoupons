@@ -77,6 +77,19 @@ export function GoogleUserResources($http) {
         }
       };
       return $http.get(url, options);
+    },
+
+    queryNewCouponsPerCompanyForTheLastNDays(user, days) {
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/companies/newCoupons/${days}`;
+      var options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'access_token': accessToken
+        }
+      };
+      return $http.get(url, options);
     }
   }
 

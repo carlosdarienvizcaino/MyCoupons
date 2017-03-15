@@ -15,6 +15,8 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="newCoupons">New</a></li>
+        <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="companies">Companies</a></li>
         <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="logout">Logout</a></li>
       </ul>
     </div>
