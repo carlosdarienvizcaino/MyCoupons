@@ -25,7 +25,7 @@ module.exports = function(app) {
     app.get('/api/users/:userId/companies/newCoupons/:beforeDay', require('./api/companies/companies-new-coupons.controller'));
 
   // Modification
-  app.post('/api/users/:userId/coupons/modify', require('./api/coupons/coupons-modify.controller'));
+    app.post('/api/users/:userId/coupons/trash/:id', require('./api/coupons/trash-coupons.controller'));
 
   // Authentication
   app.post('/api/auth/authcode/', require('./api/auth/authcode.controller'));
