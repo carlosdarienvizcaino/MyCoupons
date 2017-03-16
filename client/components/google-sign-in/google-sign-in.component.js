@@ -21,7 +21,7 @@ export class GoogleSignIn {
 
   onload() {
     gapi.signin2.render('my-signin2', {
-      'scope': 'https://www.googleapis.com/auth/gmail.readonly',
+      'scope': 'https://www.googleapis.com/auth/gmail.modify',
       'width': 150,
       'height': 25,
       'longtitle': true,
