@@ -4,32 +4,51 @@ import routing from './main.routes';
 
 export class MainController {
 
-  coupons = [];
   companies = [];
   companyName = [];
   companyDomain = [];
   obj = [];
-  couponsId = [];
+  couponsIds = [];
 
   /*@ngInject*/
-    constructor($scope, $log, GoogleUser, GoogleUserResources) {
+    constructor($rootScope, GoogleUser, GoogleUserResources, Coupons) {
       this.googleUser = GoogleUser;
       this.googleUserResources = GoogleUserResources;
-      $scope.$log = $log;
-      $scope.company = "";
+      this.couponsService = Coupons;
     }
 
   $onInit(){
-    if(this.googleUser.hasCredentials()) {
-      this.googleUserResources.queryMostRecentCouponsIds(this.googleUser, 5)
-        .then(res => {
-          this.coupons = res.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+
+    var queryCouponsIds = this.couponsService.getAllCouponsIds();
+
+    if ( queryCouponsIds.length == 0) {
+      this.queryMostRecentCouponsIds(this.googleUser, 5);
+    }
+    else {
+      this.couponsIds = this.couponsService.getAllCouponsIds();
     }
   }
+
+  queryMostRecentCouponsIds(googleUser, NIds) {
+
+    this.googleUserResources.queryMostRecentCouponsIds(googleUser, NIds)
+      .then(res => {
+
+        var ids = res.data;
+        this.couponsIds = [];
+
+        ids.map(obj => {
+          this.couponsIds.push(obj.id);
+        });
+
+        return this.couponsIds;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
 
   runsearch(company){
     let counter = 0;

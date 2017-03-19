@@ -10,7 +10,12 @@
               <h3 class="panel-title">New Coupons</h3>
             </div>
             <div class="col col-xs-6 text-right">
-              <button type="button" class="btn btn-sm btn-primary btn-create">View All</button>
+              <button
+                type="button"
+                class="btn btn-sm btn-primary btn-create"
+                ng-click="$ctrl.viewAllCoupons()">
+                View All
+                </button>
             </div>
           </div>
         </div>
@@ -36,7 +41,8 @@
             <tr ng-repeat="company in $ctrl.companies">
 
               <td class="col-check" align="center">
-                <input type="checkbox" id="checkall" ng-click="$ctrl.addNewCouponsIds(company.newCouponsIds, checke)"/>
+                <input type="checkbox" id="checkall"
+                       ng-click="$ctrl.addNewCouponsIds(company.name, company.newCouponsIds)"/>
               </td>
               <td align="center">
                 <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px"/>

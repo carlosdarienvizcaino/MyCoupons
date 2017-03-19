@@ -9,8 +9,8 @@
         <button type="submit" ng-click="$ctrl.runsearch(company)" ui-sref="main" >Get Search</button>
       </div>
 
-      <div ng-repeat="coupon in $ctrl.coupons ">
-        <mini-coupon coupon-id=coupon.id> </mini-coupon>
+      <div ng-repeat="couponId in $ctrl.couponsIds ">
+        <mini-coupon coupon-id=couponId> </mini-coupon>
       </div>
 
     </div>

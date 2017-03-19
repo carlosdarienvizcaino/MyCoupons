@@ -10,6 +10,7 @@ export function GoogleUserResources($http) {
   var Resources = {
 
     queryMostRecentCouponsIds(user, maxResults){
+
       var userEmail = user.getEmail();
       var accessToken = user.getAccessToken();
       var url = `/api/users/${userEmail}/coupons/ids/${maxResults}`;

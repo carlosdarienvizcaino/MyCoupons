@@ -8,10 +8,12 @@ export class NewCouponsComponent {
   days = 7;
   companies;
 
-  constructor(GoogleUser, GoogleUserResources){
+  constructor(GoogleUser, GoogleUserResources, Coupons, $rootScope, $state){
     'ngInject';
     this.googleUser = GoogleUser;
     this.googleUserResources = GoogleUserResources;
+    this.couponsService = Coupons;
+    this.rootScope = $rootScope;
   }
 
   $onInit() {
@@ -30,7 +32,13 @@ export class NewCouponsComponent {
   }
 
   addNewCouponsIds(companyName, ids){
-    console.log(id);
+    this.couponsService.addNewCouponsForCompany(companyName, ids);
+  }
+
+  viewAllCoupons() {
+    var couponIds =  this.couponsService.getAllCouponsIds();
+    this.rootScope.$emit('NewCouponsToRenderEvent', couponIds);
+    $state.go('main');
   }
 
 }
