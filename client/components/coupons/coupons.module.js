@@ -17,6 +17,10 @@ export function Coupons() {
     companies.delete(companyName);
    },
 
+   removeAllCouponsIds() {
+     companies = new Map();
+   },
+
    getAllCouponsIds() {
      var couponIds = [];
      companies.forEach(function(ids){

@@ -1,4 +1,5 @@
 
+
 <div class="container">
   <div class="row">
 
@@ -41,8 +42,10 @@
             <tr ng-repeat="company in $ctrl.companies">
 
               <td class="col-check" align="center">
-                <input type="checkbox" id="checkall"
-                       ng-click="$ctrl.addNewCouponsIds(company.name, company.newCouponsIds)"/>
+                <input type="checkbox"
+                       ng-checked="$ctrl.selectedNewCoupons.indexOf(company) != -1"
+                       ng-click="$ctrl.updateNewCouponsForCompany(company.name, company.newCouponsIds)"
+                />
               </td>
               <td align="center">
                 <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px"/>
@@ -53,6 +56,7 @@
               <td align="center">
                 <b>{{company.newTotalCoupons}}</b>
               </td>
+
             </tr>
             </tbody>
           </table>

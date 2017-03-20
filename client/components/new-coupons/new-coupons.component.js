@@ -5,19 +5,23 @@ import routing from './new-coupons.routes';
 
 export class NewCouponsComponent {
 
+  selectedNewCoupons = [];
   days = 7;
   companies;
 
-  constructor(GoogleUser, GoogleUserResources, Coupons, $rootScope, $state){
+  constructor(GoogleUser, GoogleUserResources, Coupons, $state){
     'ngInject';
     this.googleUser = GoogleUser;
     this.googleUserResources = GoogleUserResources;
     this.couponsService = Coupons;
-    this.rootScope = $rootScope;
+    this.state = $state;
   }
 
   $onInit() {
-   this.queryNewCouponsPerCompanyForTheLastNDays(this.googleUser, this.days);
+
+    if (this.googleUser.hasCredentials()) {
+      this.queryNewCouponsPerCompanyForTheLastNDays(this.googleUser, this.days);
+    }
   }
 
   queryNewCouponsPerCompanyForTheLastNDays(user, days) {
@@ -31,14 +35,22 @@ export class NewCouponsComponent {
       });
   }
 
-  addNewCouponsIds(companyName, ids){
-    this.couponsService.addNewCouponsForCompany(companyName, ids);
+  viewAllCoupons() {
+    $state.go('main');
   }
 
-  viewAllCoupons() {
-    var couponIds =  this.couponsService.getAllCouponsIds();
-    this.rootScope.$emit('NewCouponsToRenderEvent', couponIds);
-    $state.go('main');
+  updateNewCouponsForCompany(companyName, ids) {
+
+    if (this.selectedNewCoupons.indexOf(companyName) === -1) {
+      // Add
+      this.selectedNewCoupons.push(companyName);
+      this.couponsService.addNewCouponsForCompany(companyName, ids);
+    }
+    else {
+      // Remove
+      this.selectedNewCoupons.splice(this.selectedNewCoupons.indexOf(companyName), 1);
+      this.couponsService.removeNewCouponsForCompany(companyName);
+    }
   }
 
 }

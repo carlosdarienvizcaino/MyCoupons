@@ -22,7 +22,8 @@ export class MainController {
     var queryCouponsIds = this.couponsService.getAllCouponsIds();
 
     if ( queryCouponsIds.length == 0) {
-      this.queryMostRecentCouponsIds(this.googleUser, 5);
+      if (this.googleUser.hasCredentials())
+        this.queryMostRecentCouponsIds(this.googleUser, 5);
     }
     else {
       this.couponsIds = this.couponsService.getAllCouponsIds();
