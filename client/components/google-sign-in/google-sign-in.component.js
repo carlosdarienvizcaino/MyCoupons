@@ -22,8 +22,8 @@ export class GoogleSignIn {
   onload() {
     gapi.signin2.render('my-signin2', {
       'scope': 'https://www.googleapis.com/auth/gmail.modify',
-      'width': 150,
-      'height': 25,
+      'width': 400,
+      'height': 50,
       'longtitle': true,
       'theme': 'dark',
       'onsuccess': onSignIn,
@@ -35,9 +35,15 @@ export class GoogleSignIn {
   onSignIn(googleUser) {
 
     var profile = googleUser.getBasicProfile();
+    var auth2 = gapi.auth2.getAuthInstance();
     googleUser.reloadAuthResponse()
       .then(authorizationRes => {
         console.log(authorizationRes['access_token']);
+
+        auth2.signIn({
+          //prompt: 'select_account',
+           fetch_basic_profile: false
+        });
 
         GoogleUser.setUserCredentials({
           fullName: profile.getName(),

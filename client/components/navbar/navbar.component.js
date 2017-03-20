@@ -13,6 +13,8 @@ export class NavbarComponent {
     'ngInject';
     this.isGoogleLoggedIn = Auth.isGoogleLoggedIn;
   }
+
+
 }
 
 export default angular.module('directives.navbar', [])

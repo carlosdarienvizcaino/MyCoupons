@@ -31,12 +31,6 @@ export default class LoginController {
     }
   }
 
-
-
-
-
-
-
   login(form) {
     this.submitted = true;
 

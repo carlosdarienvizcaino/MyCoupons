@@ -1,5 +1,6 @@
 'use strict';
 
+
 class _User {
   _id = '';
   name = '';
@@ -27,28 +28,43 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
     currentUser = User.get();
   }
 
+
   var Auth = {
 
     initGoogleAuthentication() {
+
       gapi.load('auth2', function () {
         var auth2 = gapi.auth2.init({
           client_id: '1067900185599-f5h58q36rfs9e8bg750gt25n8nmaupaq.apps.googleusercontent.com',
-          scope: 'profile'
+          scope: 'https://www.googleapis.com/auth/gmail.modify',
+          cookiepolicy: 'single_host_origin',
         });
         $rootScope.$broadcast('GoogleAuthInitializedEvent', auth2);
+
+
       });
+
     },
 
     logoutFromGoogle() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-      });
-    },
 
+      var authorization = gapi.auth2.getAuthInstance();
+      authorization.signOut().then(function(){});
+
+    },
+    signoutFromGoogle(){
+      var authorization = gapi.auth2.getAuthInstance();
+      authorization.disconnect().then(function () {
+      });
+
+
+
+    },
     isGoogleLoggedIn() {
       try {
         var GoogleAuth = gapi.auth2.getAuthInstance();
-        return (GoogleAuth.isSignedIn.get());
+        return GoogleAuth.isSignedIn.get();
+
       }
       catch (e){
       }
@@ -237,6 +253,7 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
       return $cookies.get('token');
     },
   };
+
 
   return Auth;
 }
