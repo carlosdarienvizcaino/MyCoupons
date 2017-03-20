@@ -90,10 +90,23 @@ export function GoogleUserResources($http) {
           'access_token': accessToken
         }
       };
-      console.log(options);
       return $http.post(url,options);
+    },
+    changeLabelId(user, couponId){
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/modify_label/${couponId}`;
+      var options = {
+        headers: {
+          'method': 'POST',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'access_token': accessToken
+        }
+      };
+      return $http.post(url,options);
+
     }
-  }
+  };
 
   return Resources;
 }

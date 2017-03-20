@@ -26,14 +26,16 @@ module.exports = function(app) {
 
   // Modification
     app.post('/api/users/:userId/coupons/trash/:id', require('./api/coupons/trash-coupons.controller'));
+    app.post('/api/users/:userId/coupons/modify_label/:id', require('./api/coupons/modify-coupons.controller'));
 
   // Authentication
-  app.post('/api/auth/authcode/', require('./api/auth/authcode.controller'));
-
+    app.post('/api/auth/authcode/', require('./api/auth/authcode.controller'));
 
   // All undefined asset or api routes should return a 404
-  app.route('/:url(api|auth|components|app|bower_components|assets)/*')
+    app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
+
+
 
   // All other routes should redirect to the index.html
   app.route('/*')

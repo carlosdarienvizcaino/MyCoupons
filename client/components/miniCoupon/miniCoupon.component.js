@@ -38,7 +38,7 @@ export class miniCouponComponent {
   }
 
   CouponTrash(couponId){
-    this.googleUserResources.trashCoupon(this.googleUser, couponId)
+    this.googleUserResources.trashCoupon(this.googleUser, couponId);
     window.location.reload();
   }
 
@@ -46,8 +46,12 @@ export class miniCouponComponent {
     return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
   }
 
-  showCoupon = function() {
+  showCoupon(couponId) {
+    this.ChangeCouponToRead(couponId);
     console.log('here');
+  }
+  ChangeCouponToRead(couponId){
+    this.googleUserResources.changeLabelId(this.googleUser, couponId);
   }
 
 }

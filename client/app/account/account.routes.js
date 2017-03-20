@@ -9,12 +9,22 @@ export default function routes($stateProvider) {
     controller: 'LoginController',
     controllerAs: 'vm'
   })
-    .state('logout', {
-      url: '/logout',
+    .state('signout', {
+      url: '/signout',
       template: '',
       controller($state, Auth) {
         'ngInject';
         Auth.logoutFromGoogle();
+        $state.go('login');
+      }
+    })
+
+    .state('disconnect', {
+      url: '/disconnect',
+      template: '',
+      controller($state, Auth){
+        'ngInject';
+        Auth.signoutFromGoogle();
         $state.go('login');
       }
     });
