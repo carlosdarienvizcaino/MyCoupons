@@ -1,5 +1,4 @@
 
-
 <div class="container">
   <div class="row">
 
@@ -39,7 +38,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="company in $ctrl.companies">
+            <tr ng-repeat="company in $ctrl.getCompaniesForPage($ctrl.currentPageNumber)">
 
               <td class="col-check" align="center">
                 <input type="checkbox"
@@ -67,21 +66,20 @@
             <div class="col col-xs-offset-3 col-xs-6">
               <nav aria-label="Page navigation" class="text-center">
                 <ul class="pagination">
-                  <li>
-                    <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">«</span>
-                    </a>
+
+                  <li ng-class="{disabled: $ctrl.currentPageNumber <= 1}">
+                    <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber - 1)">«</a>
                   </li>
-                  <li class="active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li>
-                    <a href="#" aria-label="Next">
-                      <span aria-hidden="true">»</span>
-                    </a>
+
+                  <li ng-repeat="pageNumber in $ctrl.getPages() track by $index"
+                      ng-class="{active: $ctrl.currentPageNumber === $index+1}">
+                    <a ng-click="$ctrl.setPage($index+1)">{{$index+1}}</a>
                   </li>
+
+                  <li ng-class="{disabled: $ctrl.currentPageNumber >= $ctrl.totalPagesNumber}">
+                    <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber + 1)">»</a>
+                  </li>
+
                 </ul>
               </nav>
             </div>
