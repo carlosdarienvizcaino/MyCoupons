@@ -91,8 +91,36 @@ export function GoogleUserResources($http) {
         }
       };
       return $http.get(url, options);
+    },
+
+    trashCoupon(user, couponId){
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/trash/${couponId}`;
+      var options = {
+        headers: {
+          'method': 'POST',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'access_token': accessToken
+        }
+      };
+      return $http.post(url,options);
+    },
+
+    changeLabelId(user, couponId){
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/modify_label/${couponId}`;
+      var options = {
+        headers: {
+          'method': 'POST',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'access_token': accessToken
+        }
+      };
+      return $http.post(url,options);
     }
-  }
+  };
 
   return Resources;
 }

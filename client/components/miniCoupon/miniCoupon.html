@@ -28,9 +28,9 @@
           </div>
         </div>
         <div class="panel-footer moreInfo">
-          <span><a href="#" class="fa fa-trash fa-2x moreInfoL"></a></span>
+          <span><a ng-click="$ctrl.CouponTrash(item.id)" class="fa fa-trash fa-2x moreInfoL"></a></span>
           <span class="moreInfoC">Received: {{item.date}}</span>
-          <span><button ng-click="$ctrl.showCoupon()" class="btn-link moreInfoR">See Original Coupon</button></span>
+          <span><button ng-click="$ctrl.showCoupon(item.id)" class="btn-link moreInfoR">See Original Coupon</button></span>
         </div>
       </div>
     </div>

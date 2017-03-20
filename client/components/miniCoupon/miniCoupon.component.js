@@ -4,7 +4,6 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import routing from './miniCoupon.routes';
-
 export class miniCouponComponent {
 
   // Used for one way binding
@@ -25,6 +24,8 @@ export class miniCouponComponent {
     }
   }
 
+
+
   queryMiniCouponWithId(user, couponId) {
     var that = this;
     this.googleUserResources.queryMiniCouponWithId(user, couponId)
@@ -36,13 +37,23 @@ export class miniCouponComponent {
       });
   }
 
+  CouponTrash(couponId){
+    this.googleUserResources.trashCoupon(this.googleUser, couponId);
+    window.location.reload();
+  }
+
   couponIdIsNotUndefined(changesObj) {
     return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
   }
 
-  showCoupon = function() {
+  showCoupon(couponId) {
+    this.ChangeCouponToRead(couponId);
     console.log('here');
   }
+  ChangeCouponToRead(couponId){
+    this.googleUserResources.changeLabelId(this.googleUser, couponId);
+  }
+
 }
 
 export default angular.module('myCouponsApp.miniCoupon', [uiRouter])

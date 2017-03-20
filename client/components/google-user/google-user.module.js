@@ -35,7 +35,7 @@ export function GoogleUser() {
 
     hasCredentials() {
       return this.getAccessToken() !== UNKNOWN && this.getAccessToken() !== undefined;
-    }
+    },
   };
 }
 
