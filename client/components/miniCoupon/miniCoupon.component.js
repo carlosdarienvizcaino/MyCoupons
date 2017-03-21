@@ -4,6 +4,9 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import routing from './miniCoupon.routes';
+
+
+
 export class miniCouponComponent {
 
   // Used for one way binding
@@ -14,6 +17,26 @@ export class miniCouponComponent {
     'ngInject';
     this.googleUser = GoogleUser;
     this.googleUserResources = GoogleUserResources;
+    var app = angular.module("MyApp", []);
+
+    app.directive('errSrc', function() {
+      return {
+        link: function(scope, element, attrs) {
+          element.bind('error', function() {
+            if (attrs.src != attrs.errSrc) {
+              attrs.$set('src', attrs.errSrc);
+            }
+          });
+          attrs.$observe('ngSrc', function(value) {
+            if (!value && attrs.errSrc) {
+              attrs.$set('src', attrs.errSrc);
+            }
+          });
+
+        }
+      }
+    });
+
   }
 
   $onChanges(changesObj) {
@@ -23,7 +46,6 @@ export class miniCouponComponent {
       this.queryMiniCouponWithId(this.googleUser, couponId);
     }
   }
-
 
 
   queryMiniCouponWithId(user, couponId) {
@@ -36,6 +58,7 @@ export class miniCouponComponent {
         console.log(error);
       });
   }
+
 
   CouponTrash(couponId){
     this.googleUserResources.trashCoupon(this.googleUser, couponId);
@@ -54,7 +77,10 @@ export class miniCouponComponent {
     this.googleUserResources.changeLabelId(this.googleUser, couponId);
   }
 
+
 }
+
+
 
 export default angular.module('myCouponsApp.miniCoupon', [uiRouter])
   .config(routing)
