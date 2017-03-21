@@ -8,13 +8,14 @@
       <div class="panel coupon">
         <div class="panel-heading" id="head">
           <div class="panel-title" id="title">
-            <img src="https://logo.clearbit.com/{{item.domain}}"></img>
+              <img class="img-circle" ng-src='https://logo.clearbit.com/{{item.domain}}' onerror=this.src="/assets/images/logonotfound.PNG">
+
             <span class="hidden-xs">{{item.subject}}</span>
             <span class="visible-xs">{{item.subject}}</span>
           </div>
         </div>
         <div class="panel-body">
-          <img src="https://logo.clearbit.com/{{item.domain}}" class="coupon-img img-rounded">
+          <img ng-src="https://logo.clearbit.com/{{item.domain}}" class="coupon-img img-rounded" onerror=this.src="/assets/images/logonotfound.PNG">
           <div class="col-md-12 well well-sm">
             <div id="business-info">
               <ul>
