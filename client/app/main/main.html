@@ -1,21 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container">
-
-  <div class="row">
-    <div class="col-lg-12">
-
-      <div class = "form-group">
-        <input type= "text" ng-model="company" placeholder="Search" class = "form-group"/>
-        <button type="submit" ng-click="$ctrl.runsearch(company)" ui-sref="main" >Get Search</button>
+<div id="mainbody" class="container">
+  <div class="container">
+    <div class="row">
+      <div class="-align-left">
+        <form action="" class="search-form">
+          <div class="form-group has-feedback">
+            <label for="search" class="sr-only">Search</label>
+            <input type="text" ng-model="company" class="form-control" name="search" id="search" placeholder="search">
+            <button ng-show="false" ng-click="$ctrl.runsearch(company)" ui-sref="main" type="submit"></button>
+            <span  class="glyphicon glyphicon-search form-control-feedback"></span>
+          </div>
+        </form>
       </div>
+    </div>
+  </div>
 
+  <div  class="row">
+    <div class="col-lg-12">
       <div ng-repeat="couponId in $ctrl.couponsIds ">
         <mini-coupon coupon-id=couponId> </mini-coupon>
       </div>
-
     </div>
   </div>
 </div>
+</html>
 
 
 
