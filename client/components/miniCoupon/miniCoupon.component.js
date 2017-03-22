@@ -4,14 +4,16 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import routing from './miniCoupon.routes';
+import {fullCouponModal} from '../modal/full-coupon-modal.component';
 export class miniCouponComponent {
 
   // Used for one way binding
   couponId;
   miniCoupons = [];
 
-  constructor(GoogleUser, GoogleUserResources){
+  constructor(GoogleUser, GoogleUserResources, $uibModal){
     'ngInject';
+    this.modalInstance = $uibModal;
     this.googleUser = GoogleUser;
     this.googleUserResources = GoogleUserResources;
   }
@@ -47,6 +49,13 @@ export class miniCouponComponent {
   }
 
   showCoupon(couponId) {
+    this.modalInstance.open({
+      template: require('./../modal/full-coupon-modal.html'),
+      controller: fullCouponModal,
+      controllerAs: '$mCtrl',
+      bindToController: true
+    });
+    console.log(this.miniCoupons);
     this.ChangeCouponToRead(couponId);
     console.log('here');
   }

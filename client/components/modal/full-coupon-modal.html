@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" ng-click="$dismiss()" class="close">&times;</button>
+    <p>FULL COUPON VIEW</p>
+  </div>
+  <div class="modal-body">
+    <div ng-repeat="couponId in $mCtrl.currentCoupons">
+      <full-coupon coupon-id="couponId"></full-coupon>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="$mCtrl.cancel()">Close</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -10,6 +10,7 @@ export class FullCoupon{
 
   mostRecentCouponHtml = [];
 
+
   // Used for one way binding
   couponId;
 
@@ -46,7 +47,7 @@ export class FullCoupon{
       var html = atob(htmlInBase64);
       couponInHtml.push(html);
     });
-
+    this.fullcouponservice.getHTML(couponInHtml);
     return couponInHtml;
   }
 
