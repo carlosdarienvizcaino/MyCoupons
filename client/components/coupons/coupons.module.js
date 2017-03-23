@@ -6,6 +6,8 @@
 export function Coupons() {
 
   var companies = new Map();
+  var currentId;
+
 
   return {
 
@@ -20,6 +22,14 @@ export function Coupons() {
    removeAllCouponsIds() {
      companies = new Map();
    },
+
+    shareCurrentId(Id) {
+     currentId = Id;
+    },
+
+    getCurrentID() {
+     return currentId;
+    },
 
    getAllCouponsIds() {
      var couponIds = [];

@@ -38,6 +38,7 @@ export class MainController {
 
         ids.map(obj => {
           this.couponsIds.push(obj.id);
+          this.couponsService.addNewCouponsForCompany(obj.id,obj.id);
         });
 
         return this.couponsIds;
