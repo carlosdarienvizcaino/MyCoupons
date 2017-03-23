@@ -136,7 +136,8 @@
   "scripts": {
     "test": "gulp test",
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
-    "start": "node server/"
+    "start": "node server/",
+    "deploy-heroku": "git subtree push --prefix dist heroku master"
   },
   "private": true
 }
