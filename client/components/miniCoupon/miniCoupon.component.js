@@ -4,7 +4,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import routing from './miniCoupon.routes';
-
+import {fullCouponModal} from '../modal/full-coupon-modal.component';
 
 
 export class miniCouponComponent {
@@ -13,10 +13,12 @@ export class miniCouponComponent {
   couponId;
   miniCoupons = [];
 
-  constructor(GoogleUser, GoogleUserResources){
+  constructor(GoogleUser, GoogleUserResources, $uibModal, Coupons){
     'ngInject';
+    this.modalInstance = $uibModal;
     this.googleUser = GoogleUser;
     this.googleUserResources = GoogleUserResources;
+    this.coupon = Coupons;
   }
 
   $onChanges(changesObj) {
@@ -26,7 +28,6 @@ export class miniCouponComponent {
       this.queryMiniCouponWithId(this.googleUser, couponId);
     }
   }
-
 
   queryMiniCouponWithId(user, couponId) {
     var that = this;
@@ -50,6 +51,13 @@ export class miniCouponComponent {
   }
 
   showCoupon(couponId) {
+    this.coupon.shareCurrentId(couponId);
+    this.modalInstance.open({
+      template: require('./../modal/full-coupon-modal.html'),
+      controller: fullCouponModal,
+      controllerAs: '$mCtrl',
+      bindToController: true
+    });
     this.ChangeCouponToRead(couponId);
     console.log('here');
   }
