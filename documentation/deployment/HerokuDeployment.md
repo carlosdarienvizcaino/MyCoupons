@@ -18,6 +18,10 @@ heroku apps:destroy --app <instance_name>
 
 heroku git:remote -a <instance_name>
 
+**Build *dist/* folder**
+
+gulp build
+
 **Push ONLY *dist/* folder to heroku**
 
 git subtree push --prefix dist heroku master
