@@ -45,6 +45,7 @@ const paths = {
           `!${serverPath}/config/local.env.sample.js`
         ],
         json: [`${serverPath}/**/*.json`],
+        credentials : `${serverPath}/.credentials`,
         test: {
           integration: [`${serverPath}/**/*.integration.js`, 'mocha.global.js'],
           unit: [`${serverPath}/**/*.spec.js`, 'mocha.global.js']
@@ -475,6 +476,7 @@ gulp.task('build', cb => {
             'copy:assets',
             'copy:fonts:dist',
             'copy:server',
+            'copy:credentials',
             'webpack:dist'
         ],
         'revReplaceWebpack',
@@ -552,6 +554,13 @@ gulp.task('copy:assets', () => {
 gulp.task('copy:server', () => {
     return gulp.src([
         'package.json'
+    ], {cwdbase: true})
+        .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('copy:credentials', () => {
+    return gulp.src([
+        `${paths.server.credentials}/*`
     ], {cwdbase: true})
         .pipe(gulp.dest(paths.dist));
 });

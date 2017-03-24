@@ -30,11 +30,13 @@ _mongoose2.default.Promise = require('bluebird');
 
 
 // Connect to MongoDB
-_mongoose2.default.connect(_environment2.default.mongo.uri, _environment2.default.mongo.options);
-_mongoose2.default.connection.on('error', function (err) {
-  console.error('MongoDB connection error: ' + err);
+/*
+mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connection.on('error', function(err) {
+  console.error(`MongoDB connection error: ${err}`);
   process.exit(-1); // eslint-disable-line no-process-exit
 });
+*/
 
 // Populate databases with sample data
 if (_environment2.default.seedDB) {
