@@ -5,12 +5,17 @@
   "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   background-color: Linen;
+  max-width: 100%;
+  margin-bottom: 5%;
 }
 
 .coupon #head {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  min-height: 56px;
+  min-height: 20px;
+  max-height: 60px;
+  padding: 0;
+  margin: 0;
 }
 
 .coupon #footer {
@@ -24,8 +29,9 @@
 
 .coupon #title img {
   font-size: 30px;
-  height: 30px;
+  height: 20px;
   margin-top: 5px;
+  margin-left: 5px;
 }
 
 @media screen and (max-width: 500px) {
@@ -38,12 +44,24 @@
   float: right;
   margin-top: 5px;
   font-weight: 700;
+
+
+  font-size: 15px;
+  width: 80%;
+  height: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .coupon-img {
-  width: 100%;
-  margin-bottom: 15px;
+  width: 40%;
+  margin-top: 0px;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 10px;
   padding: 0;
+
 }
 
 #business-info ul {
@@ -68,7 +86,7 @@
 }
 
 .disclosure {
-  padding-top: 15px;
+  padding-top: 0px;
   font-size: 11px;
   color: #bcbcbc;
   text-align: center;
@@ -90,7 +108,7 @@
   color: #f34235;
   position: relative;
   display: inline-block;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .moreInfoR {
@@ -101,5 +119,4 @@
 .img-circle {
   border-radius: 50%;
   overflow: hidden;
-
 }

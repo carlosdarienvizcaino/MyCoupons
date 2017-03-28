@@ -49,4 +49,14 @@
   font-size: 14px;
 }
 
-
+.mainStyle {
+  background-color: white;
+}
+.couponHolder {
+  width: 70%;
+  align-items: center;
+}
+.couponHolder .row {
+  display: inline-block;
+  position: relative;
+}

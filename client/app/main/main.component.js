@@ -21,7 +21,7 @@ export class MainController {
 
     if ( queryCouponsIds.length == 0) {
       if (this.googleUser.hasCredentials())
-        this.queryMostRecentCouponsIds(this.googleUser, 5);
+        this.queryMostRecentCouponsIds(this.googleUser, 4);
     }
     else {
       this.couponsIds = this.couponsService.getAllCouponsIds();
@@ -32,7 +32,6 @@ export class MainController {
 
     this.googleUserResources.queryMostRecentCouponsIds(googleUser, NIds)
       .then(res => {
-
         var ids = res.data;
         this.couponsIds = [];
 

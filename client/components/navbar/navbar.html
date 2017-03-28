@@ -18,15 +18,14 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav js-nav-add-active-class navbar-right">
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="main">Main</a></li>
-            <li  ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="newCoupons">New</a></li>
-            <li   ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="companies">Companies</a></li>
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="signout">Signout</a></li>
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" class="navbar-btn btn btn-gradient-blue" am-latosans="bold"
-                                                      ui-sref="disconnect">Disconnect</a></li>
-          </ul>
-
+            <ul class="nav navbar-nav js-nav-add-active-class navbar-right">
+              <li><a uisref="about">About</a></li>
+              <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="main">Main</a></li>
+              <li  ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="newCoupons">New</a></li>
+              <li  ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="companies">Companies</a></li>
+              <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="signout">Signout</a></li>
+              <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="disconnect">Disconnect</a></li>
+            </ul>
           </div>
       </div>
     </nav>
