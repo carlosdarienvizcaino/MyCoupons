@@ -32,7 +32,8 @@
 }
 
 .coupon #title img {
-  height: 25px;
+  height: 50px;
+  width: 50px;
   overflow: hidden;
   margin-top: 5px;
   margin-left: 5px;
@@ -47,17 +48,17 @@
 
 .coupon #title span {
   float: right;
-  margin-top: 5px;
+  width: 83%;
+  margin-top: 17px;
   font-weight: 700;
   font-size: medium;
-  width: 80%;
+
+
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
-  margin-left: -100%;
 
 }
-
 
 #business-info ul {
   margin: 0;
