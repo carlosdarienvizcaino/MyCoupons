@@ -4,26 +4,20 @@
 <body>
   <div class="panel coupon" id="areabox">
     <div class="panel-heading" id="head">
+
       <div class="panel-title" id="title">
           <img class="img-circle" ng-src='https://logo.clearbit.com/{{$ctrl.miniCoupons.domain}}' onerror=this.src="/assets/images/logonotfound.PNG" >
         <span class="hidden-xs">{{$ctrl.miniCoupons.subject}}</span>
-        <!--<span class="visible-xs">{{$ctrl.miniCoupons.subject}}</span>-->
       </div>
     </div>
+
+
     <div class="panel-body">
-      <img ng-src="https://logo.clearbit.com/{{$ctrl.miniCoupons.domain}}" class="coupon-img img-rounded" onerror=this.src="/assets/images/logonotfound.PNG">
-      <!--<div class="col-md-12 well well-sm">-->
-        <!--<div id="business-info">-->
-          <!--<ul>-->
-            <!--<li><span><i class="fa fa-phone"></i> {{$ctrl.miniCoupons.phone}}</span></li>-->
-            <!--<li><span><i class="fa fa-map-marker"></i> {{$ctrl.miniCoupons.address}}</span></li>-->
-          <!--</ul>-->
-        <!--</div>-->
-      <!--</div>-->
       <div class="col-md-12">
         <p class="disclosure">{{$ctrl.miniCoupons.snippet}}</p>
       </div>
     </div>
+
     <div class="panel-footer moreInfo">
       <span><a ng-click="$ctrl.CouponTrash($ctrl.miniCoupons.id)" class="fa fa-trash fa-2x moreInfoL"></a></span>
       <span class="moreInfoC">Received: {{$ctrl.miniCoupons.date}}</span>

@@ -2,7 +2,6 @@
   height: auto;
 
 }
-
 .coupon {
   border: 3px dashed #bcbcbc;
   border-radius: 10px;
@@ -29,19 +28,20 @@
 }
 
 #title .visible-xs {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .coupon #title img {
-  font-size: 30px;
-  height: 20px;
+  height: 25px;
+  overflow: hidden;
   margin-top: 5px;
   margin-left: 5px;
+  margin-right: 0;
 }
 
 @media screen and (max-width: 500px) {
   .coupon #title img {
-    height: 15px;
+    height: 24px;
   }
 }
 
@@ -49,25 +49,15 @@
   float: right;
   margin-top: 5px;
   font-weight: 700;
-
-
-  font-size: 15px;
+  font-size: medium;
   width: 80%;
-  height: 25px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.coupon-img {
-  width: 40%;
-  margin-top: 0px;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-bottom: 10px;
-  padding: 0;
+  margin-left: -100%;
 
 }
+
 
 #business-info ul {
   margin: 0;
@@ -119,9 +109,4 @@
 .moreInfoR {
   position: relative;
   float: right;
-}
-
-.img-circle {
-  border-radius: 50%;
-  overflow: hidden;
 }
