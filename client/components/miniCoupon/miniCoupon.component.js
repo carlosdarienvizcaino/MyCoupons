@@ -31,6 +31,7 @@ export class miniCouponComponent {
 
   queryMiniCouponWithId(user, couponId) {
     var that = this;
+    console.log(user);
     this.googleUserResources.queryMiniCouponWithId(user, couponId)
       .then(response => {
         that.miniCoupons = response.data;

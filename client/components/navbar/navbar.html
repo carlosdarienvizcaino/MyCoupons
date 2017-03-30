@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<html>
-<div class="container">
-  <!-- Navigation -->
-  <div class="row">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">MyCoupons</a>
-        </div>
+<div class="menu-wrap">
+  <nav class="menu">
+    <ul class="clearfix">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav js-nav-add-active-class navbar-right">
-              <li><a uisref="about">About</a></li>
-              <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="main">Main</a></li>
-              <li  ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="newCoupons">New</a></li>
-              <li  ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="companies">Companies</a></li>
-              <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="signout">Signout</a></li>
-              <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" ui-sref="disconnect">Disconnect</a></li>
-            </ul>
-          </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">MyCoupons</a>
       </div>
-    </nav>
-  </div>
+
+      <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="main">Main</a></li>
+      <li>
+        <a href="#" ng-show="$ctrl.isGoogleLoggedIn()">Coupons <span class="arrow">&#9660;</span></a>
+        <ul class="sub-menu">
+          <li  ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="newCoupons">New</a></li>
+          <li   ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="companies">Companies</a></li>
+        </ul>
+      </li>
+      <li><a href="#">About MyCoupons</a></li>
+      <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="signout">Signout</a></li>
+      <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button"  am-latosans="bold"
+                                                ui-sref="disconnect">Disconnect</a></li>
+    </ul>
+  </nav>
 </div>
-</html>
-
-
-
-
