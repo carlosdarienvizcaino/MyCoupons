@@ -15,7 +15,6 @@ body {
 }
 
 .menu {
-  width:1000px;
   margin:0px auto;
 }
 
@@ -27,12 +26,13 @@ body {
 
 .menu a {
   transition:all linear 0.15s;
-  color:#919191;
+  color:#FFFFFF !important;
 }
 
 .menu li:hover > a, .menu .current-item > a {
   text-decoration:none;
-  color: darkseagreen;
+  color: darkseagreen !important;
+  background:#2e2728 !important;
 }
 
 .menu .arrow {
@@ -55,7 +55,7 @@ body {
 }
 
 .menu > ul > li:hover > a, .menu > ul > .current-item > a {
-  background:#2e2728;
+  background:white;
 }
 
 /*----- Bottom Level -----*/
