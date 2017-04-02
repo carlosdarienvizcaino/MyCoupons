@@ -8,15 +8,15 @@ import angular from 'angular';
 
 export class FullCoupon{
 
-  mostRecentCouponHtml = [];
-
   // Used for one way binding
   couponId;
 
-  constructor(GoogleUser, GoogleUserResources){
+  constructor(GoogleUser, GoogleUserResources, $scope, $sce){
     'ngInject';
     this.googleUser = GoogleUser;
     this.googleUserResources = GoogleUserResources;
+    this.$scope = $scope;
+    this.$sce = $sce;
   }
 
   $onChanges(changesObj) {
@@ -31,7 +31,7 @@ export class FullCoupon{
     var that = this;
     this.googleUserResources.queryCouponWithId(user, couponId)
       .then(response => {
-        that.mostRecentCouponHtml = this.convertCouponFromBase64UrlToHtml(response.data)
+        that.$scope.html = that.$sce.trustAsHtml(this.convertCouponFromBase64UrlToHtml(response.data));
       })
       .catch(error =>{
         console.log(error);
@@ -40,12 +40,13 @@ export class FullCoupon{
 
   convertCouponFromBase64UrlToHtml(couponDataInBase64Url) {
 
-    var couponInHtml = [];
+    var html="";
     couponDataInBase64Url.data.forEach( htmlInBase64Url =>{
       var htmlInBase64 = this.Base64DecodeUrl(htmlInBase64Url);
-      var html = atob(htmlInBase64);
-      couponInHtml.push(html);
+      html = atob(htmlInBase64);
+
     });
+    var couponInHtml = html;
 
     return couponInHtml;
   }
@@ -54,6 +55,9 @@ export class FullCoupon{
     str = (str + '===').slice(0, str.length + (str.length % 4));
     return str.replace(/-/g, '+').replace(/_/g, '/');
   }
+
+
+
 
   couponIdIsNotUndefined(changesObj) {
     return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
