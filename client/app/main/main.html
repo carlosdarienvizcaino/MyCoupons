@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div id="mainbody" class="container">
+<div id="mainbody" class="container mainStyle">
   <div class="container">
     <div class="row">
       <div class="-align-left">
@@ -16,14 +15,13 @@
       </div>
     </div>
   </div>
-
-  <div  class="row">
-    <div class="col-lg-12">
-      <div ng-repeat="couponId in $ctrl.couponsIds ">
+<div class="container couponHolder">
+  <div class="row">
+    <div class="col-md-6" ng-repeat="couponId in $ctrl.couponsIds">
         <mini-coupon coupon-id=couponId> </mini-coupon>
-      </div>
     </div>
   </div>
+</div>
 </div>
 </html>
 

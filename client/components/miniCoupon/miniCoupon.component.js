@@ -11,7 +11,7 @@ export class miniCouponComponent {
 
   // Used for one way binding
   couponId;
-  miniCoupons = [];
+  miniCoupons;
 
   constructor(GoogleUser, GoogleUserResources, $uibModal, Coupons){
     'ngInject';
@@ -31,9 +31,10 @@ export class miniCouponComponent {
 
   queryMiniCouponWithId(user, couponId) {
     var that = this;
+    console.log(user);
     this.googleUserResources.queryMiniCouponWithId(user, couponId)
       .then(response => {
-        that.miniCoupons.push(response.data);
+        that.miniCoupons = response.data;
       })
       .catch(error =>{
         console.log(error);
