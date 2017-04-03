@@ -1,6 +1,5 @@
-
 <div class="navbar navbar-default navbar-static-top menu-wrap">
-  <nav class="container menu">
+  <nav class="menu">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed">
         <span class="sr-only">Toggle navigation</span>
@@ -10,28 +9,21 @@
       </button>
       <a href="/" class="navbar-brand font">MyCoupons</a>
     </div>
-    <div class="clearfix">
       <div uib-collapse="$ctrl.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-        <ul class="nav navbar-nav">
-          <li ng-repeat="item in $ctrl.menu" ui-sref-active="active">
-            <a ui-sref="{{item.state}}">{{item.title}}</a></li>
-        </ul>
-
         <ul class="nav navbar-nav navbar-right">
           <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="main">Main</a></li>
           <li>
           <a href="#" ng-show="$ctrl.isGoogleLoggedIn()">Coupons <span class="arrow">&#9660;</span></a>
           <ul class="sub-menu">
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="newCoupons">New</a></li>
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="companies">Companies</a></li>
+            <li class="btn-block" ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="newCoupons">New</a></li>
+            <li class="btn-block" ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="companies">Companies</a></li>
           </ul>
           </li>
-          <li><a href="#">About</a></li>
+          <li><a ui-sref="">About</a></li>
           <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="signout">Signout</a></li>
           <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button"  am-latosans="bold"
           ui-sref="disconnect">Disconnect</a></li>
         </ul>
       </div>
-    </div>
   </nav>
 </div>
