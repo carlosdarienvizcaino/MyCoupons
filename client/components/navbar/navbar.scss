@@ -2,24 +2,17 @@ body {
   background:darkseagreen;
 }
 
-//.clearfix:after {
-//  display:block;
-//  clear:both;
-//}
-
 /*----- Menu Outline -----*/
 .menu-wrap {
   width:100%;
-  box-shadow:0vw 1vw 3vw rgba(0,0,0,0.2);
+  box-shadow:0 1vw 3vw rgba(0,0,0,0.2);
   background:#3e3436;
 }
 
-.menu {
-  margin:0vw auto;
-}
+
 
 .menu li {
-  margin: 0vw;;
+  margin: 0;
   list-style:none;
   font-family:'Ek Mukta';
 }
@@ -38,6 +31,7 @@ body {
 .menu .arrow {
   font-size:1vw;
   line-height:0%;
+  padding-left: 5px;
 }
 
 /*----- Top Level -----*/
@@ -54,14 +48,10 @@ body {
 }
 
 .menu > ul > li > a {
-  padding:10vw 40vw;
   display:inline-block;
   text-shadow:0vw 1vw 0vw rgba(0,0,0,0.4);
 }
 
-.menu > ul > li:hover > a, .menu > ul > .current-item > a {
-  background:white;
-}
 
 /*----- Bottom Level -----*/
 .menu li:hover .sub-menu {
@@ -78,19 +68,18 @@ body {
   background: #2e2728;
 }
 
+
 .sub-menu li a {
   font-size: 1.6vw !important;
 }
 
-.sub-menu li a:hover, .sub-menu .current-item a {
-  background:#3e3436 !important;
-}
 .font {
   font-family: 'Curlz MT';
   font-size: 3vw;
 }
 
-#image{
-  height: 2vw;
-  width: 2vw;
+.img-circle{
+  height: 2.1vw;
+  width: 2.1vw;
 }
+

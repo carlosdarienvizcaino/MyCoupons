@@ -21,7 +21,6 @@ export class NavbarComponent {
 
   showname(){
     var firstname=this.googleUser.getFullName().split(" ");
-
     return firstname[0];
   }
 

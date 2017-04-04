@@ -15,6 +15,10 @@ export function Coupons() {
      companies.set(companyName, ids);
    },
 
+    addCouponsForCompany(companyName, ids) {
+      companies.set(companyName, ids);
+    },
+
    removeNewCouponsForCompany(companyName) {
     companies.delete(companyName);
    },

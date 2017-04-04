@@ -25,8 +25,20 @@ export class MainController {
     }
     else {
       this.couponsIds = this.couponsService.getAllCouponsIds();
+      this.couponsService.removeAll();
     }
-    console.log(queryCouponsIds);
+  }
+
+  runagain(){
+    var queryCouponsIds = this.couponsService.getAllCouponsIds();
+
+    if ( queryCouponsIds.length == 0) {
+      if (this.googleUser.hasCredentials())
+        this.queryMostRecentCouponsIds(this.googleUser, 10);
+    }
+    else {
+      this.couponsIds = this.couponsService.getAllCouponsIds();
+    }
   }
 
   queryMostRecentCouponsIds(googleUser, NIds) {
@@ -75,6 +87,6 @@ export default angular.module('myCouponsApp.main', [uiRouter])
   .config(routing)
   .component('main', {
     template: require('./main.html'),
-    controller: MainController
+    controller: MainController,
   })
   .name;
