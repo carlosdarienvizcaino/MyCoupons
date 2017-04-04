@@ -42,8 +42,10 @@ export class miniCouponComponent {
 
 
   CouponTrash(couponId){
-    this.googleUserResources.trashCoupon(this.googleUser, couponId);
-    window.location.reload();
+    var that = this;
+    that.coupon.removeAll();
+    that.googleUserResources.trashCoupon(this.googleUser, couponId);
+    $state.go('main', {}, {reload: true});
   }
 
   couponIdIsNotUndefined(changesObj) {

@@ -13,6 +13,7 @@ export function Coupons() {
 
    addNewCouponsForCompany(companyName, ids) {
      companies.set(companyName, ids);
+
    },
 
     addCouponsForCompany(companyName, ids) {
@@ -24,7 +25,7 @@ export function Coupons() {
    },
 
    removeAll() {
-     companies = new Map();
+     companies.clear();
    },
 
     shareCurrentId(Id) {

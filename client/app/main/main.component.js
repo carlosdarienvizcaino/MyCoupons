@@ -18,28 +18,16 @@ export class MainController {
   $onInit(){
 
     var queryCouponsIds = this.couponsService.getAllCouponsIds();
-
     if ( queryCouponsIds.length == 0) {
       if (this.googleUser.hasCredentials())
         this.queryMostRecentCouponsIds(this.googleUser, 10);
     }
-    else {
+    else{
       this.couponsIds = this.couponsService.getAllCouponsIds();
       this.couponsService.removeAll();
     }
   }
 
-  runagain(){
-    var queryCouponsIds = this.couponsService.getAllCouponsIds();
-
-    if ( queryCouponsIds.length == 0) {
-      if (this.googleUser.hasCredentials())
-        this.queryMostRecentCouponsIds(this.googleUser, 10);
-    }
-    else {
-      this.couponsIds = this.couponsService.getAllCouponsIds();
-    }
-  }
 
   queryMostRecentCouponsIds(googleUser, NIds) {
 
