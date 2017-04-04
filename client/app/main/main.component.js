@@ -26,6 +26,7 @@ export class MainController {
     else {
       this.couponsIds = this.couponsService.getAllCouponsIds();
     }
+    console.log(queryCouponsIds);
   }
 
   queryMostRecentCouponsIds(googleUser, NIds) {

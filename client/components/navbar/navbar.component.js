@@ -9,9 +9,21 @@ export class NavbarComponent {
 
   isCollapsed = true;
 
-  constructor(Auth) {
+  constructor(Auth, GoogleUser) {
     'ngInject';
     this.isGoogleLoggedIn = Auth.isGoogleLoggedIn;
+    this.googleUser = GoogleUser;
+  }
+
+  getImage(){
+    console.log(this.googleUser.getImageURL());
+    return this.googleUser.getImageURL();
+  }
+
+  showname(){
+    var firstname=this.googleUser.getFullName().split(" ");
+
+    return firstname[0];
   }
 
 

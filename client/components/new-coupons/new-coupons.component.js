@@ -64,6 +64,7 @@ export class NewCouponsComponent {
 
   updateNewCouponsForCompany(companyName, ids) {
 
+    console.log(this.selectedNewCoupons);
     if (this.selectedNewCoupons.indexOf(companyName) === -1) {
       // Add
       this.selectedNewCoupons.push(companyName);

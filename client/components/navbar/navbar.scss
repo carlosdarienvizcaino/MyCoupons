@@ -10,16 +10,16 @@ body {
 /*----- Menu Outline -----*/
 .menu-wrap {
   width:100%;
-  box-shadow:0px 1px 3px rgba(0,0,0,0.2);
+  box-shadow:0vw 1vw 3vw rgba(0,0,0,0.2);
   background:#3e3436;
 }
 
 .menu {
-  margin:0px auto;
+  margin:0vw auto;
 }
 
 .menu li {
-  margin:0px;
+  margin: 0vw;;
   list-style:none;
   font-family:'Ek Mukta';
 }
@@ -54,9 +54,9 @@ body {
 }
 
 .menu > ul > li > a {
-  padding:10px 40px;
+  padding:10vw 40vw;
   display:inline-block;
-  text-shadow:0px 1px 0px rgba(0,0,0,0.4);
+  text-shadow:0vw 1vw 0vw rgba(0,0,0,0.4);
 }
 
 .menu > ul > li:hover > a, .menu > ul > .current-item > a {
@@ -70,17 +70,16 @@ body {
 }
 
 .sub-menu {
-  width:100%;
-  position:absolute;
-  opacity:0;
-  transition:opacity linear 0.15s;
-  box-shadow:0px 2px 3px rgba(0,0,0,0.2);
-  background:#2e2728;
-  text-align: center !important;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity linear 0.15s;
+  box-shadow: 0vw 2vw 3vw rgba(0, 0, 0, 0.2);
+  background: #2e2728;
 }
 
 .sub-menu li a {
-  font-size: 2vw !important;
+  font-size: 1.6vw !important;
 }
 
 .sub-menu li a:hover, .sub-menu .current-item a {
@@ -89,4 +88,9 @@ body {
 .font {
   font-family: 'Curlz MT';
   font-size: 3vw;
+}
+
+#image{
+  height: 2vw;
+  width: 2vw;
 }

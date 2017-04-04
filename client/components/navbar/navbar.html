@@ -20,9 +20,15 @@
           </ul>
           </li>
           <li><a ui-sref="">About</a></li>
+          <li>
+          <a href="#" ng-show="$ctrl.isGoogleLoggedIn()">{{$ctrl.showname()}} <img  id="image" ng-src={{$ctrl.getImage()}}>
+            <span class="arrow">&#9660;</span></a>
+          <ul class="sub-menu">
           <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="signout">Signout</a></li>
           <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button"  am-latosans="bold"
           ui-sref="disconnect">Disconnect</a></li>
+          </ul>
+          </li>
         </ul>
       </div>
   </nav>
