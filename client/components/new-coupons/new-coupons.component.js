@@ -9,7 +9,8 @@ export class NewCouponsComponent {
   totalPagesNumber = 1;
   currentPageNumber = 1;
 
-  selectedNewCoupons = [];
+  selectedNewCouponsCompanyNames = [];
+  selectedNewCouponsIds = new Map();
   days = 7;
   companies = [];
 
@@ -34,7 +35,6 @@ export class NewCouponsComponent {
       .then(response => {
         that.companies = response.data.companies;
         that.totalPagesNumber = Math.ceil(that.companies.length/that.numberOfCompaniesPerPage);
-        console.log(that.companies.length/that.numberOfCompaniesPerPage);
       })
       .catch(error =>{
         console.log(error);
@@ -62,25 +62,33 @@ export class NewCouponsComponent {
       this.currentPageNumber = pageNumber;
   }
 
-  updateNewCouponsForCompany(companyName, ids) {
+  updateNewCouponsForCompany(companyName, domain, ids) {
 
-    console.log(this.selectedNewCoupons);
-    if (this.selectedNewCoupons.indexOf(companyName) === -1) {
+    if (this.selectedNewCouponsCompanyNames.indexOf(companyName) === -1) {
+
       // Add
-      this.selectedNewCoupons.push(companyName);
-      this.couponsService.addNewCouponsForCompany(companyName, ids);
+      this.selectedNewCouponsIds.set(companyName, ids);
+      this.selectedNewCouponsCompanyNames.push(companyName);
     }
     else {
+
       // Remove
-      this.selectedNewCoupons.splice(this.selectedNewCoupons.indexOf(companyName), 1);
-      this.couponsService.removeNewCouponsForCompany(companyName);
+      this.selectedNewCouponsIds.delete(companyName);
+      this.selectedNewCouponsCompanyNames.splice(companyName, 1);
     }
   }
 
   viewAllCoupons() {
+    this.couponsService.removeAll();
+
+    var that = this;
+    this.selectedNewCouponsCompanyNames.forEach( function(companyName){
+      var ids = that.selectedNewCouponsIds.get(companyName);
+      that.couponsService.addNewCouponsForCompany(companyName, ids);
+    });
+
     $state.go('main');
   }
-
 
 }
 

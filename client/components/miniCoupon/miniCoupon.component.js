@@ -31,7 +31,6 @@ export class miniCouponComponent {
 
   queryMiniCouponWithId(user, couponId) {
     var that = this;
-
     this.googleUserResources.queryMiniCouponWithId(user, couponId)
       .then(response => {
         that.miniCoupons = response.data;
@@ -60,15 +59,11 @@ export class miniCouponComponent {
       bindToController: true
     });
     this.ChangeCouponToRead(couponId);
-    console.log('here');
   }
   ChangeCouponToRead(couponId){
     this.googleUserResources.changeLabelId(this.googleUser, couponId);
   }
-
-
 }
-
 
 
 export default angular.module('myCouponsApp.miniCoupon', [uiRouter])

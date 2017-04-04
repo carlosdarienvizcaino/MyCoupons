@@ -19,7 +19,7 @@ export function Coupons() {
     companies.delete(companyName);
    },
 
-   removeAllCouponsIds() {
+   removeAll() {
      companies = new Map();
    },
 

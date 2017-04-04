@@ -16,7 +16,6 @@ export class NavbarComponent {
   }
 
   getImage(){
-    console.log(this.googleUser.getImageURL());
     return this.googleUser.getImageURL();
   }
 

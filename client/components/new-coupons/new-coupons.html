@@ -42,8 +42,8 @@
 
               <td class="col-check" align="center">
                 <input type="checkbox"
-                       ng-checked="$ctrl.selectedNewCoupons.indexOf(company) != -1"
-                       ng-click="$ctrl.updateNewCouponsForCompany(company.name, company.newCouponsIds)"
+                       ng-checked="$ctrl.selectedNewCouponsCompanyNames.indexOf(company) != -1"
+                       ng-click="$ctrl.updateNewCouponsForCompany(company.name, company.domain, company.newCouponsIds)"
                 />
               </td>
               <td align="center">
