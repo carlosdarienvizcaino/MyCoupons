@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="accountCont" class="container acountHolder">
+  <div class="row">
+    <div>
+    <h1 class="accountName">{{$ctrl.showAccountName()}}</h1>
+    <img id="accountImg" class="img-circle" ng-src={{$ctrl.getAccountImage()}}>
+    </div>
+    <p class="accountText">If you would like to completely remove all permissions you have given MyCoupons to access your Gmail Account,
+    please click Disconnect below.</p>
+    <a class="btn btn-default" type="button"  am-latosans="bold" ui-sref="disconnect">Disconnect</a>
+  </div>
+</div>
+</body>
+</html>
+
+
+
