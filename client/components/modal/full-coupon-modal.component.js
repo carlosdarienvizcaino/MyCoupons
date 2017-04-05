@@ -19,18 +19,18 @@ export class fullCouponModal {
   }
 
   //Cancel Modal
-  cancel = function() {
-    this.currentModal.dismiss('cancel');
-  };
+  // cancel = function() {
+  //   this.currentModal.dismiss('cancel');
+  // };
 
-  previous = function() {
+  previousCoupon = function() {
     var currentID = this.allIDs.indexOf(this.ID);
     if (currentID != 0) {
       this.ID = this.allIDs[currentID-1];
     }
   };
 
-  next = function() {
+  nextCoupon = function() {
     var currentID = this.allIDs.indexOf(this.ID);
     if (currentID != 9) {
       this.ID = this.allIDs[currentID + 1];

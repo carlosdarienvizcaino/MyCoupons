@@ -28,6 +28,7 @@ import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import miniCoupon from '../components/miniCoupon/miniCoupon.component';
 import main from './main/main.component';
+import myAccount from '../components/myAccount/myAccount.component';
 import constants from './app.constants';
 import companyCoupons from '../components/company-coupons/company-coupons.component';
 import util from '../components/util/util.module';
@@ -35,7 +36,7 @@ import util from '../components/util/util.module';
 import './app.scss';
 
 angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  Coupons, GoogleUser, account, admin, googleSignIn, fullCoupon, newCoupons, navbar, footer, miniCoupon, main,companyCoupons,
+  Coupons, GoogleUser, account, admin, googleSignIn, fullCoupon, newCoupons, navbar, footer, miniCoupon, myAccount, main,companyCoupons,
   constants, util
 ])
   .config(routeConfig)
