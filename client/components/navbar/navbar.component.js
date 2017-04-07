@@ -9,19 +9,26 @@ export class NavbarComponent {
 
   isCollapsed = true;
 
-  constructor(Auth, GoogleUser) {
+  constructor(Auth, GoogleUser, Coupons) {
     'ngInject';
     this.isGoogleLoggedIn = Auth.isGoogleLoggedIn;
     this.googleUser = GoogleUser;
+    this.coupon = Coupons;
+
   }
 
   getImage(){
     return this.googleUser.getImageURL();
   }
 
-  showname(){
+  showName(){
     var firstname=this.googleUser.getFullName().split(" ");
     return firstname[0];
+  }
+
+  removeCoupons(){
+    var that = this;
+    that.coupon.removeAll();
   }
 
 

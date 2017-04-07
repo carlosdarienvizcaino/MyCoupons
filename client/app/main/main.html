@@ -15,6 +15,16 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <ul   class="nav nav-tabs">
+        <li ng-repeat="company in $ctrl.organizedCompanyNames"><a href="#" data-toggle="tab"
+                                                                  ng-click="$ctrl.tabSelected(company.Name)">{{company.Name}}
+        </a></li>
+      </ul>
+    </div>
+
 <div class="container couponHolder">
   <div class="row">
     <div class="col-md-6" ng-repeat="couponId in $ctrl.couponsIds">

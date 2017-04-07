@@ -6,12 +6,14 @@ import angular from 'angular';
 export class fullCouponModal {
   ID;
   allIDs = [];
-  constructor($uibModalInstance, Coupons) {
+  constructor($uibModalInstance, Coupons, GoogleUserResources,GoogleUser) {
     'ngInject';
     this.coupon = Coupons;
+    this.googleUser = GoogleUser;
     this.currentModal = $uibModalInstance;
     //To eliminate "possibly unhandled rejection" error message
     this.currentModal.result.catch(function() {});
+    this.googleUserResources = GoogleUserResources;
   }
   $onInit() {
     this.ID = this.coupon.getCurrentID();
@@ -28,6 +30,7 @@ export class fullCouponModal {
     if (currentID != 0) {
       this.ID = this.allIDs[currentID-1];
     }
+    this.ChangeNextCouponToRead(this.ID);
   };
 
   nextCoupon = function() {
@@ -35,6 +38,11 @@ export class fullCouponModal {
     if (currentID != 9) {
       this.ID = this.allIDs[currentID + 1];
     }
+    this.ChangeNextCouponToRead(this.ID);
+
+  };
+  ChangeNextCouponToRead(couponId){
+    this.googleUserResources.changeLabelId(this.googleUser, couponId);
   };
 }
 
@@ -44,3 +52,4 @@ export default angular.module('myCouponsApp.fullCouponModal', [])
     controller: fullCouponModal
   })
   .name;
+

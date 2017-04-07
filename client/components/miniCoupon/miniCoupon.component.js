@@ -42,9 +42,10 @@ export class miniCouponComponent {
 
 
   CouponTrash(couponId){
+
     var that = this;
-    that.coupon.removeAll();
     that.googleUserResources.trashCoupon(this.googleUser, couponId);
+    that.coupon.removeNewCouponsForCompany(couponId);
     $state.go('main', {}, {reload: true});
   }
 

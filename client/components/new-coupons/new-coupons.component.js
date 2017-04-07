@@ -84,9 +84,12 @@ export class NewCouponsComponent {
     this.couponsService.removeAll();
 
     var that = this;
-    this.selectedNewCouponsCompanyNames.forEach( function(companyName){
+
+    that.selectedNewCouponsCompanyNames.forEach( function(companyName){
       var ids = that.selectedNewCouponsIds.get(companyName);
-      that.couponsService.addNewCouponsForCompany(companyName, ids);
+      ids.forEach(function(id){
+      that.couponsService.addNewCouponsForCompany(id, id);
+      });
     });
 
     $state.go('main');

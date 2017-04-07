@@ -90,7 +90,9 @@ export class CompanyCouponsComponent {
     var that = this;
     this.selectedCouponsCompanyNames.forEach( function(companyName){
       var ids = that.selectedCouponsIds.get(companyName);
-      that.couponsService.addCouponsForCompany(companyName, ids);
+      ids.forEach(function(id){
+      that.couponsService.addCouponsForCompany(id, id);
+      });
     });
 
     $state.go('main');

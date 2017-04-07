@@ -11,7 +11,7 @@
     </div>
       <div uib-collapse="$ctrl.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav navbar-right">
-          <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="main" data-ui-sref-opts="{notify:true, reload:true}">Main</a></li>
+          <li ng-click="$ctrl.removeCoupons()" ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="main" data-ui-sref-opts="{notify:true, reload:true}">Main</a></li>
           <li>
           <a href="#" ng-show="$ctrl.isGoogleLoggedIn()" style="padding-right: 2.5vw;">Coupons<span class="arrow">&#9660;</span></a>
           <ul class="sub-menu">
@@ -21,7 +21,7 @@
           </li>
           <li><a ui-sref="">About</a></li>
           <li>
-          <a href="#" ng-show="$ctrl.isGoogleLoggedIn()">{{$ctrl.showname()}} <img class="img-circle" ng-src={{$ctrl.getImage()}}>
+          <a href="#" ng-show="$ctrl.isGoogleLoggedIn()">{{$ctrl.showName()}} <img class="img-circle" ng-src={{$ctrl.getImage()}}>
             <span class="arrow">&#9660;</span></a>
           <ul class="sub-menu">
           <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="signout">Signout</a></li>

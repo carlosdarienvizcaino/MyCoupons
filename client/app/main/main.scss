@@ -62,3 +62,18 @@
   display: inline-block;
   position: relative;
 }
+
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus {
+  text-decoration: none;
+  background-color: rgba( 143,188,143, 0.5);
+  border: 0.15vw dashed rgba(128,128,128, 0.4);
+}
+.nav-tabs>li>a{
+  padding-bottom: 1vw;
+  font-size: medium;
+  color: #222222;
+
+}
+
+

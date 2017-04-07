@@ -6,6 +6,9 @@ export class MainController {
 
   companies = [];
   couponsIds = [];
+  company;
+  organizedCompanyNames;
+  check;
 
   /*@ngInject*/
     constructor($scope, GoogleUser, GoogleUserResources, Coupons) {
@@ -18,13 +21,19 @@ export class MainController {
   $onInit(){
 
     var queryCouponsIds = this.couponsService.getAllCouponsIds();
+
+    this.organizedCompanyNames=[];
+
     if ( queryCouponsIds.length == 0) {
       if (this.googleUser.hasCredentials())
         this.queryMostRecentCouponsIds(this.googleUser, 10);
     }
     else{
+      var that = this;
       this.couponsIds = this.couponsService.getAllCouponsIds();
-      this.couponsService.removeAll();
+      this.couponsIds.forEach(function(ids){
+        that.organizeCompanies(that.googleUser, ids);
+      });
     }
   }
 
@@ -38,6 +47,7 @@ export class MainController {
 
         ids.map(obj => {
           this.couponsIds.push(obj.id);
+          this.organizeCompanies(googleUser, obj.id);
           this.couponsService.addNewCouponsForCompany(obj.id,obj.id);
         });
 
@@ -48,7 +58,66 @@ export class MainController {
       });
   }
 
+  organizeCompanies(user, id) {
+    var that = this;
+    this.googleUserResources.queryMiniCouponWithId(user, id)
+      .then(response => {
+        that.company = response.data;
+        that.check = true;
+        that.parseData(that.company);
+      })
+      .catch(error =>{
+        console.log(error);
+      });
 
+  }
+
+  parseData(company) {
+    var that = this;
+    var lnght = that.organizedCompanyNames.length;
+    var str = company.name.split(" ");
+
+    if (lnght == 0) {
+      that.organizedCompanyNames.push({
+        Name: str[0],
+        ID: [company.id]
+      });
+      that.check = false;
+    }
+    else {
+      for (var i = 0; i < lnght; i++) {
+        if (that.organizedCompanyNames[i].Name == str[0]) {
+          that.organizedCompanyNames[i].ID.push(company.id);
+          that.check = false;
+          break;
+        }
+      }
+    }
+
+    if(that.check){
+      that.organizedCompanyNames.push({
+        Name: str[0],
+        ID: [company.id]
+      })
+    }
+    that.check = true;
+
+  }
+
+
+  tabSelected(name){
+
+    var that = this;
+    var size = that.organizedCompanyNames.length;
+
+    for(var i = 0 ; i < size ; i++){
+      if(that.organizedCompanyNames[i].Name == name){
+        that.couponsIds = that.organizedCompanyNames[i].ID;
+        break;
+      }
+    }
+
+  }
 
   runsearch(company){
     if(this.googleUser.hasCredentials() ) {
