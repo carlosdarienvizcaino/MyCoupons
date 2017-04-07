@@ -119,6 +119,7 @@ export class MainController {
   }
 
   runsearch(company){
+    this.organizedCompanyNames = [];
     if(this.googleUser.hasCredentials() ) {
       this.googleUserResources.queryMostRecentSearchedCoupon(this.googleUser, 10, company)
         .then(res => {
