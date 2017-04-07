@@ -37,7 +37,6 @@ export class MainController {
     }
   }
 
-
   queryMostRecentCouponsIds(googleUser, NIds) {
 
     this.googleUserResources.queryMostRecentCouponsIds(googleUser, NIds)

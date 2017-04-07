@@ -39,7 +39,7 @@ body {
   float: left;
   display:inline-block;
   position:relative;
-   a {
+  a {
     font-size: 2vw;
   }
 }
@@ -56,13 +56,11 @@ body {
 /*----- Bottom Level -----*/
 .menu li:hover .sub-menu {
   z-index:1;
-  opacity:1;
 }
 
 .sub-menu {
   width: 100%;
   position: absolute;
-  opacity: 0;
   transition: opacity linear 0.15s;
   box-shadow: 0vw 2vw 3vw rgba(0, 0, 0, 0.2);
   background: #2e2728;
@@ -83,3 +81,10 @@ body {
   width: 2.1vw;
 }
 
+li ul{
+  display:none;
+}
+
+li:hover ul{
+  display:block;
+}

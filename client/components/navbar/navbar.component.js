@@ -15,6 +15,7 @@ export class NavbarComponent {
     this.googleUser = GoogleUser;
     this.coupon = Coupons;
 
+
   }
 
   getImage(){
