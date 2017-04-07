@@ -127,6 +127,7 @@ export class MainController {
           this.couponsIds = [];
 
           ids.map(obj => {
+            this.organizeCompanies(this.googleUser, obj.id);
             this.couponsIds.push(obj.id);
           });
 
