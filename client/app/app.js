@@ -1,7 +1,7 @@
 'use strict';
 
 import angular from 'angular';
-// import ngAnimate from 'angular-animate';
+import ngAnimate from 'angular-animate';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
@@ -35,7 +35,7 @@ import util from '../components/util/util.module';
 
 import './app.scss';
 
-angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
+angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, ngAnimate, _Auth,
   Coupons, GoogleUser, account, admin, googleSignIn, fullCoupon, newCoupons, navbar, footer, miniCoupon, myAccount, main,companyCoupons,
   constants, util
 ])
