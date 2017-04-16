@@ -13,6 +13,7 @@ export class NewCouponsComponent {
   selectedNewCouponsIds = new Map();
   days = 7;
   companies = [];
+  currentShowingCompanies = ["NO"];
 
   constructor(GoogleUser, GoogleUserResources, Coupons, $state){
     'ngInject';
@@ -29,14 +30,12 @@ export class NewCouponsComponent {
     }
   }
 
-
-
   queryNewCouponsPerCompanyForTheLastNDays(user, days) {
     var that = this;
     this.googleUserResources.queryNewCouponsPerCompanyForTheLastNDays(user, days)
       .then(response => {
         that.companies = response.data.companies;
-        that.totalPagesNumber = Math.ceil(that.companies.length/that.numberOfCompaniesPerPage);
+        console.log(that.companies);
       })
       .catch(error =>{
         console.log(error);

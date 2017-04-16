@@ -1,0 +1,25 @@
+<div class="panel-footer">
+  <div class="row">
+    <div class="col col-xs-offset-3 col-xs-6">
+      <nav aria-label="Page navigation" class="text-center">
+        <ul class="pagination">
+
+          <li ng-class="{disabled: $ctrl.currentPageNumber <= 1}">
+            <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber - 1)">«</a>
+          </li>
+
+          <li ng-repeat="pageNumber in $ctrl.getPages() track by $index"
+              ng-class="{active: $ctrl.currentPageNumber === $index+1}">
+            <a ng-click="$ctrl.setPage($index+1)">{{$index+1}}</a>
+          </li>
+
+          <li ng-class="{disabled: $ctrl.currentPageNumber >= $ctrl.totalPagesNumber}">
+            <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber + 1)">»</a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div>

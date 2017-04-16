@@ -24,6 +24,7 @@ import admin from './admin';
 import googleSignIn from '../components/google-sign-in/google-sign-in.component';
 import fullCoupon from '../components/full-coupon/full-coupon.component';
 import newCoupons from '../components/new-coupons/new-coupons.component';
+import pagination from '../components/pagination/pagination.component';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import miniCoupon from '../components/miniCoupon/miniCoupon.component';
@@ -36,7 +37,7 @@ import util from '../components/util/util.module';
 import './app.scss';
 
 angular.module('myCouponsApp', [ngCookies, ngResource, ngSanitize, uiRouter, uiBootstrap, _Auth,
-  Coupons, GoogleUser, account, admin, googleSignIn, fullCoupon, newCoupons, navbar, footer, miniCoupon, myAccount, main,companyCoupons,
+  Coupons, GoogleUser, account, admin, googleSignIn, fullCoupon, newCoupons, pagination, navbar, footer, miniCoupon, myAccount, main,companyCoupons,
   constants, util
 ])
   .config(routeConfig)
