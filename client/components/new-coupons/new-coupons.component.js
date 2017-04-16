@@ -42,27 +42,6 @@ export class NewCouponsComponent {
       });
   }
 
-  getCompaniesForPage(pageNumber) {
-
-    if (this.companies.length > 0) {
-      var startPosition = (pageNumber - 1) * this.numberOfCompaniesPerPage;
-      var endPosition = pageNumber * this.numberOfCompaniesPerPage;
-      return this.companies.slice(startPosition, endPosition);
-    }
-
-    return [];
-  }
-
-  getPages() {
-    return new Array(this.totalPagesNumber);
-  }
-
-  setPage(pageNumber) {
-
-    if (pageNumber >= 1 && pageNumber <= this.totalPagesNumber)
-      this.currentPageNumber = pageNumber;
-  }
-
   updateNewCouponsForCompany(companyName, domain, ids) {
 
     if (this.selectedNewCouponsCompanyNames.indexOf(companyName) === -1) {
