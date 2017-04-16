@@ -15,8 +15,12 @@ export class PaginationComponent {
     'ngInject';
   }
 
-  $onInit() {
-    this.totalPagesNumber = Math.ceil(this.elements.length/this.elementsPerPage);
+  $onChanges(changesObj) {
+
+    if(changesObj.elements) {
+      this.totalPagesNumber = Math.ceil(this.elements.length/this.elementsPerPage);
+      this.elementsForCurrentPage = this.getElementsForPage(this.currentPageNumber);
+    }
   }
 
   getPages() {
@@ -28,7 +32,6 @@ export class PaginationComponent {
     if (pageNumber >= 1 && pageNumber <= this.totalPagesNumber) {
       this.currentPageNumber = pageNumber;
     }
-
     this.elementsForCurrentPage = this.getElementsForPage(this.currentPageNumber);
   }
 
@@ -51,7 +54,7 @@ export default angular.module('myCouponsApp.pagination', [uiRouter])
     bindings : {
       elementsPerPage: '<', // one way binding
       elements: '<',
-      elementsForCurrentPage: '<'
+      elementsForCurrentPage: '=' // two way binding
     }
   })
   .name;
