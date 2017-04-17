@@ -31,13 +31,10 @@
       </ul>
     </div>
 
-    <div class="row-sm-12">
-    </div>
-
   <div class="container couponHolder">
     <div class="row">
 
-      <div class="col-md-6" ng-repeat="couponId in $ctrl.currentShowingCoupons">
+      <div class="col-md-6" ng-animate="'animate'" ng-repeat="couponId in $ctrl.currentShowingCoupons">
           <mini-coupon coupon-id=couponId> </mini-coupon>
       </div>
     </div>
