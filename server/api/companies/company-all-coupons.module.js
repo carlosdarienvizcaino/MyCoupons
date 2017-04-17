@@ -26,8 +26,10 @@ CompanyAllCoupons.prototype.addUsedCoupon = function(couponId) {
 
 CompanyAllCoupons.prototype.addCouponId = function(labelIds, couponId) {
 
-     if(labelIds.includes('UNREAD'))
-        this.addNewCoupon(couponId);
+     if(labelIds.includes('UNREAD')) {
+       this.addNewCoupon(couponId);
+       this.addUsedCoupon(couponId)
+     }
      else
         this.addUsedCoupon(couponId);
 };
