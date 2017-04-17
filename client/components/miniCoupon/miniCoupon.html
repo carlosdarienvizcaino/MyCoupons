@@ -11,7 +11,6 @@
       </div>
     </div>
 
-
     <div class="panel-body">
       <div class="col-md-12">
         <p class="disclosure">{{$ctrl.miniCoupons.snippet}}</p>
@@ -19,6 +18,7 @@
     </div>
 
     <div class="panel-footer moreInfo">
+      <span><a ng-click="$ctrl.saveCouponAsFavorite($ctrl.miniCoupons.id)" class="fa fa-heart fa-2x moreInfoL"></a></span>
       <span><a ng-click="$ctrl.CouponTrash($ctrl.miniCoupons.id)" class="fa fa-trash fa-2x moreInfoL"></a></span>
       <span class="moreInfoC">Received: {{$ctrl.miniCoupons.date}}</span>
       <span><button ng-click="$ctrl.showCoupon($ctrl.miniCoupons.id)" class="btn-link moreInfoR">Original</button></span>

@@ -133,19 +133,43 @@ export function GoogleUserResources($http) {
       return $http.post(url,options);
     },
 
-    changeLabelId(user, couponId){
+    saveCouponAsRead(user, couponId){
       var userEmail = user.getEmail();
       var accessToken = user.getAccessToken();
-      var url = `/api/users/${userEmail}/coupons/modify_label/${couponId}`;
-      var options = {
+      var url = `/api/users/${userEmail}/coupons/modify/labels/${couponId}`;
+
+
+      var data = {
         headers: {
           'method': 'POST',
           'Content-Type': 'application/x-www-form-urlencoded',
-          'access_token': accessToken
+          'access_token': accessToken,
+          'addLabelIds' : [],
+          'removeLabelIds' : ['UNREAD']
         }
       };
-      return $http.post(url,options);
+
+      return $http.post(url, data, options);
+    },
+
+    saveCouponAsFavorite(user, couponId){
+
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/modify/labels/${couponId}`;
+
+      var data = {
+        headers: {
+          'method': 'POST',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'access_token': accessToken,
+          'addLabelIds' : ['STARRED'],
+          'removeLabelIds' : []
+        }
+      };
+      return $http.post(url, data);
     }
+
   };
 
   return Resources;

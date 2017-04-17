@@ -42,7 +42,7 @@ export class fullCouponModal {
 
   };
   ChangeNextCouponToRead(couponId){
-    this.googleUserResources.changeLabelId(this.googleUser, couponId);
+    this.googleUserResources.saveCouponAsRead(this.googleUser, couponId);
   };
 }
 
