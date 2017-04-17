@@ -88,6 +88,25 @@ ___
  ```
  
  ___
+**GET** http:domain:port//api/users/:userId/coupons/favorites/ids
+  
+  **Description:** Get a users favorites coupons ids
+    
+  *Headers*
+  ```json
+    Content-Type application/json
+    access_token 
+  ```
+ *Response*
+ ```javascript
+    status : 200
+    {
+      'ids': [],
+      'errorMessage': <error message>
+    }
+ ```
+ 
+ ___
  **POST** http:domain:port//api/users/:userId/coupons/modify
   
   **Description:** Modify all coupons (in ids list) labelIds
