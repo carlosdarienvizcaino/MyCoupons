@@ -31,20 +31,29 @@ export class fullCouponModal {
   }
 
   previousCoupon = function() {
+
     var currentID = this.allIDs.indexOf(this.ID);
+
     if (currentID != 0) {
       this.ID = this.allIDs[currentID-1];
     }
+    else {
+      this.ID = this.allIDs[this.allIDs.length-1];
+    }
+
     this.saveCouponsAsRead(this.ID);
   };
 
   nextCoupon = function() {
+
     var currentID = this.allIDs.indexOf(this.ID);
+
     if (currentID != this.allIDs.length-1) {
       this.ID = this.allIDs[currentID + 1];
     }
-    console.log("****************");
-    console.log(this.ID);
+    else {
+      this.ID = this.allIDs[0];
+    }
     this.saveCouponsAsRead(this.ID);
   };
 
