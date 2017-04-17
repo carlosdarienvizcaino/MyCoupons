@@ -20,6 +20,12 @@ export class NavbarComponent {
     return this.googleUser.getImageURL();
   }
 
+  showName(){
+    var str = this.googleUser.getFullName().split(" ");
+
+    return str[0];
+  }
+
   removeCoupons(){
     var that = this;
     that.coupon.removeAll();
