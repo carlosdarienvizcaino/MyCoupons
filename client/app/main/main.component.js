@@ -7,8 +7,9 @@ export class MainController {
   companies = [];
   couponsIds = [];
   company;
-  organizedCompanyNames;
+  organizedCompanyNames = [];
   check;
+  currentShowingCoupons = [];
 
   /*@ngInject*/
     constructor($scope, GoogleUser, GoogleUserResources, Coupons) {
@@ -22,11 +23,11 @@ export class MainController {
 
     var queryCouponsIds = this.couponsService.getAllCouponsIds();
 
-    this.organizedCompanyNames=[];
+    this.organizedCompanyNames = [];
 
     if ( queryCouponsIds.length == 0) {
       if (this.googleUser.hasCredentials())
-        this.queryMostRecentCouponsIds(this.googleUser, 10);
+        this.queryMostRecentCouponsIds(this.googleUser, 24);
     }
     else{
       var that = this;
@@ -79,6 +80,7 @@ export class MainController {
     if (lnght == 0) {
       that.organizedCompanyNames.push({
         Name: str[0],
+        Domain : company.domain,
         ID: [company.id]
       });
       that.check = false;
@@ -96,6 +98,7 @@ export class MainController {
     if(that.check){
       that.organizedCompanyNames.push({
         Name: str[0],
+        Domain: company.domain,
         ID: [company.id]
       })
     }
@@ -124,6 +127,10 @@ export class MainController {
       this.googleUserResources.queryMostRecentSearchedCoupon(this.googleUser, 10, company)
         .then(res => {
           var ids = res.data;
+
+          if (ids.constructor !== Array)
+            return;
+
           this.couponsIds = [];
 
           ids.map(obj => {
@@ -131,7 +138,6 @@ export class MainController {
             this.couponsIds.push(obj.id);
           });
 
-          return this.couponsIds;
         })
         .catch(error => {
           console.log(error);
