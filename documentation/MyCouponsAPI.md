@@ -15,14 +15,12 @@ ___
 
 **GET** [http:domain:port//api/users/:userId/companies/:afterDate](api/Companies.md)
 
-**GET** [http:domain:port//api/users/:userId/coupons/favorites](api/Coupons.md)
+**GET** [http:domain:port//api/users/:userId/coupons/favorites/ids](api/Coupons.md)
 
 ___
 **Modifications**
 
 **POST** [http:domain:port//api/users/:userId/coupons/modify](api/Coupons.md)
-
-**POST** [http:domain:port//api/users/:userId/coupons/favorites](api/Coupons.md)
 
 **DELETE** [http:domain:port//api/users/:userId/coupons/:id](api/Coupons.md)
 
