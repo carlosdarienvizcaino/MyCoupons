@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="company in $ctrl.getCompaniesPerPage($ctrl.currentPageNumber)">
+            <tr ng-repeat="company in $ctrl.currentShowingCompanies">
 
               <td class="col-check" align="center">
                 <input type="checkbox"
@@ -48,13 +48,13 @@
                 />
               </td>
               <td align="center">
-                <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px"/>
+                <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px" />
               </td>
               <td align="center">
                 <b>{{company.name}}</b>
               </td>
               <td align="center">
-                <b>{{company.usedTotalCoupons}}</b>
+                <b>{{company.usedTotalCoupons + company.newTotalCoupons}}</b>
               </td>
 
             </tr>
@@ -62,30 +62,12 @@
           </table>
         </div>
 
-        <div class="panel-footer">
-          <div class="row">
-            <div class="col col-xs-offset-3 col-xs-6">
-              <nav aria-label="Page navigation" class="text-center">
-                <ul class="pagination">
+        <pagination
+          elements-per-page="7"
+          elements="$ctrl.companies"
+          elements-for-current-page="$ctrl.currentShowingCompanies">
+        </pagination>
 
-                  <li ng-class="{disabled: $ctrl.currentPageNumber <= 1}">
-                    <a href ng-click="$ctrl.setEachPage($ctrl.currentPageNumber - 1)">«</a>
-                  </li>
-
-                  <li ng-repeat="pageNumber in $ctrl.getCompanyPages() track by $index"
-                      ng-class="{active: $ctrl.currentPageNumber === $index+1}">
-                    <a ng-click="$ctrl.setEachPage($index+1)">{{$index+1}}</a>
-                  </li>
-
-                  <li ng-class="{disabled: $ctrl.currentPageNumber >= $ctrl.totalPagesNumber}">
-                    <a href ng-click="$ctrl.setEachPage($ctrl.currentPageNumber + 1)">»</a>
-                  </li>
-
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>

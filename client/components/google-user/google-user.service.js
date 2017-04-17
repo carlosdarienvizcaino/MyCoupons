@@ -37,7 +37,6 @@ export function GoogleUserResources($http) {
       return $http.get(url, options);
     },
 
-
     queryforCompanyName(user, couponId) {
 
       var userEmail = user.getEmail();
@@ -57,6 +56,19 @@ export function GoogleUserResources($http) {
       var userEmail = user.getEmail();
       var accessToken = user.getAccessToken();
       var url = `/api/users/${userEmail}/coupons/${couponId}`;
+      var options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'access_token': accessToken
+        }
+      };
+      return $http.get(url, options);
+    },
+
+    queryFavoriteCouponsIds(user) {
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/favorites/ids`;
       var options = {
         headers: {
           'Content-Type': 'application/json',
@@ -110,6 +122,7 @@ export function GoogleUserResources($http) {
       var userEmail = user.getEmail();
       var accessToken = user.getAccessToken();
       var url = `/api/users/${userEmail}/coupons/trash/${couponId}`;
+
       var options = {
         headers: {
           'method': 'POST',
@@ -117,22 +130,47 @@ export function GoogleUserResources($http) {
           'access_token': accessToken
         }
       };
+
       return $http.post(url,options);
     },
 
-    changeLabelId(user, couponId){
+    saveCouponAsRead(user, couponId){
       var userEmail = user.getEmail();
       var accessToken = user.getAccessToken();
-      var url = `/api/users/${userEmail}/coupons/modify_label/${couponId}`;
-      var options = {
+      var url = `/api/users/${userEmail}/coupons/modify/labels/${couponId}`;
+
+
+      var data = {
         headers: {
           'method': 'POST',
           'Content-Type': 'application/x-www-form-urlencoded',
-          'access_token': accessToken
+          'access_token': accessToken,
+          'addLabelIds' : [],
+          'removeLabelIds' : ['UNREAD']
         }
       };
-      return $http.post(url,options);
+
+      return $http.post(url, data);
+    },
+
+    saveCouponAsFavorite(user, couponId){
+
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/modify/labels/${couponId}`;
+
+      var data = {
+        headers: {
+          'method': 'POST',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'access_token': accessToken,
+          'addLabelIds' : ['STARRED'],
+          'removeLabelIds' : []
+        }
+      };
+      return $http.post(url, data);
     }
+
   };
 
   return Resources;

@@ -2,22 +2,6 @@
 <html lang="en">
 <div id="mainbody" class="container mainStyle">
 
-
-  <div class="container" id="alignSearch">
-    <div class="row">
-      <div class="-align-left">
-        <form action="" class="search-form">
-          <div class="form-group has-feedback">
-            <label for="search" class="sr-only">Search</label>
-            <input type="text" ng-model="company" class="form-control" name="search" id="search" placeholder="search">
-            <button ng-show="false" ng-click="$ctrl.runsearch(company)" ui-sref="main" type="submit"></button>
-           <span  class="glyphicon glyphicon-search form-control-feedback"></span>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <div class="row">
     <div class="col-sm-12">
       <ul   class="nav nav-tabs">
@@ -29,12 +13,12 @@
          </a>
         </li>
       </ul>
-    </div>
+  </div>
 
   <div class="container couponHolder">
     <div class="row">
 
-      <div class="col-md-6" ng-animate="'animate'" ng-repeat="couponId in $ctrl.currentShowingCoupons">
+      <div class="col-md-6" ng-repeat="couponId in $ctrl.currentShowingCoupons">
           <mini-coupon coupon-id=couponId> </mini-coupon>
       </div>
     </div>
@@ -46,6 +30,5 @@
     </pagination>
 </div>
 </html>
-
 
 

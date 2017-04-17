@@ -38,7 +38,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="company in $ctrl.getCompaniesForPage($ctrl.currentPageNumber)">
+            <tr ng-repeat="company in $ctrl.currentShowingCompanies">
 
               <td class="col-check" align="center">
                 <input type="checkbox"
@@ -47,7 +47,7 @@
                 />
               </td>
               <td align="center">
-                <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px"/>
+                <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px" onerror=this.src="/assets/images/logonotfound.PNG" />
               </td>
               <td align="center">
                <b>{{company.name}}</b>
@@ -61,32 +61,14 @@
           </table>
         </div>
 
-        <div class="panel-footer">
-          <div class="row">
-            <div class="col col-xs-offset-3 col-xs-6">
-              <nav aria-label="Page navigation" class="text-center">
-                <ul class="pagination">
-
-                  <li ng-class="{disabled: $ctrl.currentPageNumber <= 1}">
-                    <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber - 1)">«</a>
-                  </li>
-
-                  <li ng-repeat="pageNumber in $ctrl.getPages() track by $index"
-                      ng-class="{active: $ctrl.currentPageNumber === $index+1}">
-                    <a ng-click="$ctrl.setPage($index+1)">{{$index+1}}</a>
-                  </li>
-
-                  <li ng-class="{disabled: $ctrl.currentPageNumber >= $ctrl.totalPagesNumber}">
-                    <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber + 1)">»</a>
-                  </li>
-
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
+        <pagination
+          elements-per-page="5"
+          elements="$ctrl.companies"
+          elements-for-current-page="$ctrl.currentShowingCompanies">
+        </pagination>
 
       </div>
     </div>
   </div>
+
 </div>

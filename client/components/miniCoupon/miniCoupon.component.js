@@ -40,13 +40,21 @@ export class miniCouponComponent {
       });
   }
 
+  saveCouponAsFavorite(couponId) {
+    this.googleUserResources.saveCouponAsFavorite(this.googleUser, couponId)
+      .then( res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
 
   CouponTrash(couponId){
-
     var that = this;
     that.googleUserResources.trashCoupon(this.googleUser, couponId);
     that.coupon.removeNewCouponsForCompany(couponId);
-    $state.go('main', {}, {reload: true});
   }
 
   couponIdIsNotUndefined(changesObj) {
@@ -61,13 +69,9 @@ export class miniCouponComponent {
       controllerAs: '$mCtrl',
       bindToController: true
     });
-    this.ChangeCouponToRead(couponId);
   }
-  ChangeCouponToRead(couponId){
-    this.googleUserResources.changeLabelId(this.googleUser, couponId);
-  }
-}
 
+}
 
 export default angular.module('myCouponsApp.miniCoupon', [uiRouter])
   .config(routing)
