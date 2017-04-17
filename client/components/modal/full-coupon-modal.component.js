@@ -5,6 +5,7 @@ import angular from 'angular';
 
 export class fullCouponModal {
   ID;
+  allIDs = [];
   constructor($uibModalInstance, Coupons) {
     'ngInject';
     this.coupon = Coupons;
@@ -14,12 +15,27 @@ export class fullCouponModal {
   }
   $onInit() {
     this.ID = this.coupon.getCurrentID();
+    this.allIDs = this.coupon.getAllCouponsIds();
   }
 
   //Cancel Modal
-  cancel = function() {
-    this.currentModal.dismiss('cancel');
-  }
+  // cancel = function() {
+  //   this.currentModal.dismiss('cancel');
+  // };
+
+  previousCoupon = function() {
+    var currentID = this.allIDs.indexOf(this.ID);
+    if (currentID != 0) {
+      this.ID = this.allIDs[currentID-1];
+    }
+  };
+
+  nextCoupon = function() {
+    var currentID = this.allIDs.indexOf(this.ID);
+    if (currentID != 9) {
+      this.ID = this.allIDs[currentID + 1];
+    }
+  };
 }
 
 export default angular.module('myCouponsApp.fullCouponModal', [])

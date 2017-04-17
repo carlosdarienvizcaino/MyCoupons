@@ -2,40 +2,27 @@
 <html lang="en">
 <head></head>
 <body>
-<div class="container">
-  <div class="row" ng-repeat="item in $ctrl.miniCoupons">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="panel coupon">
-        <div class="panel-heading" id="head">
-          <div class="panel-title" id="title">
+  <div class="panel coupon" id="areabox">
+    <div class="panel-heading" id="head">
 
-              <img class="img-circle" ng-src='https://logo.clearbit.com/{{item.domain}}' onerror=this.src="/assets/images/logonotfound.PNG" >
-            <span class="hidden-xs">{{item.subject}}</span>
-            <span class="visible-xs">{{item.subject}}</span>
-          </div>
-        </div>
-        <div class="panel-body">
-          <img ng-src="https://logo.clearbit.com/{{item.domain}}" class="coupon-img img-rounded" onerror=this.src="/assets/images/logonotfound.PNG">
-          <div class="col-md-12 well well-sm">
-            <div id="business-info">
-              <ul>
-                <li><span><i class="fa fa-phone"></i> {{item.phone}}</span></li>
-                <li><span><i class="fa fa-map-marker"></i> {{item.address}}</span></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <p class="disclosure">{{item.snippet}}</p>
-          </div>
-        </div>
-        <div class="panel-footer moreInfo">
-          <span><a ng-click="$ctrl.CouponTrash(item.id)" class="fa fa-trash fa-2x moreInfoL"></a></span>
-          <span class="moreInfoC">Received: {{item.date}}</span>
-          <span><button ng-click="$ctrl.showCoupon(item.id)" class="btn-link moreInfoR">See Original Coupon</button></span>
-        </div>
+      <div class="panel-title" id="title">
+          <img class="img-circle" ng-src='https://logo.clearbit.com/{{$ctrl.miniCoupons.domain}}' onerror=this.src="/assets/images/logonotfound.PNG" >
+        <span class="hidden-xs">{{$ctrl.miniCoupons.subject}}</span>
       </div>
     </div>
+
+
+    <div class="panel-body">
+      <div class="col-md-12">
+        <p class="disclosure">{{$ctrl.miniCoupons.snippet}}</p>
+      </div>
+    </div>
+
+    <div class="panel-footer moreInfo">
+      <span><a ng-click="$ctrl.CouponTrash($ctrl.miniCoupons.id)" class="fa fa-trash fa-2x moreInfoL"></a></span>
+      <span class="moreInfoC">Received: {{$ctrl.miniCoupons.date}}</span>
+      <span><button ng-click="$ctrl.showCoupon($ctrl.miniCoupons.id)" class="btn-link moreInfoR">Original</button></span>
+    </div>
   </div>
-</div>
 </body>
 </html>

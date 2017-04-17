@@ -18,21 +18,21 @@ export class MainController {
   $onInit(){
 
     var queryCouponsIds = this.couponsService.getAllCouponsIds();
-
     if ( queryCouponsIds.length == 0) {
       if (this.googleUser.hasCredentials())
-        this.queryMostRecentCouponsIds(this.googleUser, 5);
+        this.queryMostRecentCouponsIds(this.googleUser, 10);
     }
-    else {
+    else{
       this.couponsIds = this.couponsService.getAllCouponsIds();
+      this.couponsService.removeAll();
     }
   }
+
 
   queryMostRecentCouponsIds(googleUser, NIds) {
 
     this.googleUserResources.queryMostRecentCouponsIds(googleUser, NIds)
       .then(res => {
-
         var ids = res.data;
         this.couponsIds = [];
 
@@ -52,7 +52,7 @@ export class MainController {
 
   runsearch(company){
     if(this.googleUser.hasCredentials() ) {
-      this.googleUserResources.queryMostRecentSearchedCoupon(this.googleUser, 5, company)
+      this.googleUserResources.queryMostRecentSearchedCoupon(this.googleUser, 10, company)
         .then(res => {
           var ids = res.data;
           this.couponsIds = [];
@@ -75,6 +75,6 @@ export default angular.module('myCouponsApp.main', [uiRouter])
   .config(routing)
   .component('main', {
     template: require('./main.html'),
-    controller: MainController
+    controller: MainController,
   })
   .name;

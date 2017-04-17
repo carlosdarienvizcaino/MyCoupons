@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <div class="container">
   <div class="row">
 
@@ -7,15 +8,15 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col col-xs-6">
-              <h3 class="panel-title">New Coupons</h3>
+              <h3 class="panel-title">Company Coupons</h3>
             </div>
             <div class="col col-xs-6 text-right">
               <button
                 type="button"
                 class="btn btn-sm btn-primary btn-create"
-                ng-click="$ctrl.viewAllCoupons()">
+                ng-click="$ctrl.viewAllCompanyCoupons()">
                 View All
-                </button>
+              </button>
             </div>
           </div>
         </div>
@@ -38,22 +39,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="company in $ctrl.getCompaniesForPage($ctrl.currentPageNumber)">
+            <tr ng-repeat="company in $ctrl.getCompaniesPerPage($ctrl.currentPageNumber)">
 
               <td class="col-check" align="center">
                 <input type="checkbox"
-                       ng-checked="$ctrl.selectedNewCouponsCompanyNames.indexOf(company) != -1"
-                       ng-click="$ctrl.updateNewCouponsForCompany(company.name, company.domain, company.newCouponsIds)"
+                       ng-checked="$ctrl.selectedCouponsCompanyNames.indexOf(company) != -1"
+                       ng-click="$ctrl.updateCouponsForCompanies(company.name, company.domain, company.usedCouponsIds)"
                 />
               </td>
               <td align="center">
                 <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px"/>
               </td>
               <td align="center">
-               <b>{{company.name}}</b>
+                <b>{{company.name}}</b>
               </td>
               <td align="center">
-                <b>{{company.newTotalCoupons}}</b>
+                <b>{{company.usedTotalCoupons}}</b>
               </td>
 
             </tr>
@@ -68,16 +69,16 @@
                 <ul class="pagination">
 
                   <li ng-class="{disabled: $ctrl.currentPageNumber <= 1}">
-                    <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber - 1)">«</a>
+                    <a href ng-click="$ctrl.setEachPage($ctrl.currentPageNumber - 1)">«</a>
                   </li>
 
-                  <li ng-repeat="pageNumber in $ctrl.getPages() track by $index"
+                  <li ng-repeat="pageNumber in $ctrl.getCompanyPages() track by $index"
                       ng-class="{active: $ctrl.currentPageNumber === $index+1}">
-                    <a ng-click="$ctrl.setPage($index+1)">{{$index+1}}</a>
+                    <a ng-click="$ctrl.setEachPage($index+1)">{{$index+1}}</a>
                   </li>
 
                   <li ng-class="{disabled: $ctrl.currentPageNumber >= $ctrl.totalPagesNumber}">
-                    <a href ng-click="$ctrl.setPage($ctrl.currentPageNumber + 1)">»</a>
+                    <a href ng-click="$ctrl.setEachPage($ctrl.currentPageNumber + 1)">»</a>
                   </li>
 
                 </ul>
@@ -90,3 +91,5 @@
     </div>
   </div>
 </div>
+
+</html>

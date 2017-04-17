@@ -11,7 +11,7 @@ export class miniCouponComponent {
 
   // Used for one way binding
   couponId;
-  miniCoupons = [];
+  miniCoupons;
 
   constructor(GoogleUser, GoogleUserResources, $uibModal, Coupons){
     'ngInject';
@@ -33,7 +33,7 @@ export class miniCouponComponent {
     var that = this;
     this.googleUserResources.queryMiniCouponWithId(user, couponId)
       .then(response => {
-        that.miniCoupons.push(response.data);
+        that.miniCoupons = response.data;
       })
       .catch(error =>{
         console.log(error);
@@ -42,8 +42,10 @@ export class miniCouponComponent {
 
 
   CouponTrash(couponId){
-    this.googleUserResources.trashCoupon(this.googleUser, couponId);
-    window.location.reload();
+    var that = this;
+    that.coupon.removeAll();
+    that.googleUserResources.trashCoupon(this.googleUser, couponId);
+    $state.go('main', {}, {reload: true});
   }
 
   couponIdIsNotUndefined(changesObj) {
@@ -59,15 +61,11 @@ export class miniCouponComponent {
       bindToController: true
     });
     this.ChangeCouponToRead(couponId);
-    console.log('here');
   }
   ChangeCouponToRead(couponId){
     this.googleUserResources.changeLabelId(this.googleUser, couponId);
   }
-
-
 }
-
 
 
 export default angular.module('myCouponsApp.miniCoupon', [uiRouter])

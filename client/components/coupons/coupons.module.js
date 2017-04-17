@@ -13,14 +13,19 @@ export function Coupons() {
 
    addNewCouponsForCompany(companyName, ids) {
      companies.set(companyName, ids);
+
    },
+
+    addCouponsForCompany(companyName, ids) {
+      companies.set(companyName, ids);
+    },
 
    removeNewCouponsForCompany(companyName) {
     companies.delete(companyName);
    },
 
-   removeAllCouponsIds() {
-     companies = new Map();
+   removeAll() {
+     companies.clear();
    },
 
     shareCurrentId(Id) {

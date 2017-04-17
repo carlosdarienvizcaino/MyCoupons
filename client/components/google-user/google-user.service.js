@@ -93,6 +93,19 @@ export function GoogleUserResources($http) {
       return $http.get(url, options);
     },
 
+    queryCouponsPerCompanyForTheLastNDays(user, days) {
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/companies/${days}`;
+      var options = {
+        headers: {
+          'Content-Type': 'application/json',
+          'access_token': accessToken
+        }
+      };
+      return $http.get(url, options);
+    },
+
     trashCoupon(user, couponId){
       var userEmail = user.getEmail();
       var accessToken = user.getAccessToken();
