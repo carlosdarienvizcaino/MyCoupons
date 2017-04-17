@@ -25,10 +25,7 @@ export class fullCouponModal {
 
   $onChanges(objChange) {
 
-    console.log("******** On Changes *********");
-    console.log(this.ID);
     if(objChange.ID != undefined) {
-        console.log("Setting email as read;");
         this.saveCouponsAsRead(this.ID);
     }
   }
