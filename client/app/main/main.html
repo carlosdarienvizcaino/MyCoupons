@@ -20,21 +20,21 @@
 
   <div class="row" >
     <div class="col-sm-12">
-      <ul   class="nav nav-tabs">
+      <ul class="nav nav-tabs nav-justified">
         <li ng-repeat="company in $ctrl.organizedCompanyNames">
           <a href="#" data-toggle="tab" ng-click="$ctrl.tabSelected(company.Name)">
             <span data-ng-if="company.Domain !== undefined" class="animate-if">
-              <img class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
+              <img style="width: 3vw; height: 3vw;" class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
             </span>
          </a>
         </li>
       </ul>
     </div>
+    </div>
 
 
   <div class="container couponHolder" style="padding-top: 6vw">
     <div class="row">
-
       <div class="col-md-6" ng-repeat="couponId in $ctrl.currentShowingCoupons">
           <mini-coupon coupon-id=couponId> </mini-coupon>
       </div>
