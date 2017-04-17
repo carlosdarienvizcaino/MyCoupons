@@ -4,8 +4,10 @@
 import angular from 'angular';
 
 export class fullCouponModal {
+
   ID;
   allIDs = [];
+
   constructor($uibModalInstance, Coupons, GoogleUserResources,GoogleUser) {
     'ngInject';
     this.coupon = Coupons;
@@ -15,34 +17,48 @@ export class fullCouponModal {
     this.currentModal.result.catch(function() {});
     this.googleUserResources = GoogleUserResources;
   }
+
   $onInit() {
     this.ID = this.coupon.getCurrentID();
     this.allIDs = this.coupon.getAllCouponsIds();
   }
 
-  //Cancel Modal
-  // cancel = function() {
-  //   this.currentModal.dismiss('cancel');
-  // };
+  $onChanges(objChange) {
+
+    console.log("******** On Changes *********");
+    console.log(this.ID);
+    if(objChange.ID != undefined) {
+        console.log("Setting email as read;");
+        this.saveCouponsAsRead(this.ID);
+    }
+  }
 
   previousCoupon = function() {
     var currentID = this.allIDs.indexOf(this.ID);
     if (currentID != 0) {
       this.ID = this.allIDs[currentID-1];
     }
-    this.ChangeNextCouponToRead(this.ID);
+    this.saveCouponsAsRead(this.ID);
   };
 
   nextCoupon = function() {
     var currentID = this.allIDs.indexOf(this.ID);
-    if (currentID != 9) {
+    if (currentID != this.allIDs.length-1) {
       this.ID = this.allIDs[currentID + 1];
     }
-    this.ChangeNextCouponToRead(this.ID);
-
+    console.log("****************");
+    console.log(this.ID);
+    this.saveCouponsAsRead(this.ID);
   };
-  ChangeNextCouponToRead(couponId){
-    this.googleUserResources.saveCouponAsRead(this.googleUser, couponId);
+
+  saveCouponsAsRead(couponId){
+    this.googleUserResources.saveCouponAsRead(this.googleUser, couponId)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 }
 

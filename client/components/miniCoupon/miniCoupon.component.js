@@ -52,11 +52,9 @@ export class miniCouponComponent {
 
 
   CouponTrash(couponId){
-
     var that = this;
     that.googleUserResources.trashCoupon(this.googleUser, couponId);
     that.coupon.removeNewCouponsForCompany(couponId);
-    $state.go('main', {}, {reload: true});
   }
 
   couponIdIsNotUndefined(changesObj) {
@@ -71,12 +69,8 @@ export class miniCouponComponent {
       controllerAs: '$mCtrl',
       bindToController: true
     });
-    this.ChangeCouponToRead(couponId);
   }
 
-  ChangeCouponToRead(couponId){
-    // this.googleUserResources.saveCouponAsRead(this.googleUser, couponId);
-  }
 }
 
 export default angular.module('myCouponsApp.miniCoupon', [uiRouter])

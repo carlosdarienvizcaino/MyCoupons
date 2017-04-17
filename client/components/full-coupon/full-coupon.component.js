@@ -56,9 +56,6 @@ export class FullCoupon{
     return str.replace(/-/g, '+').replace(/_/g, '/');
   }
 
-
-
-
   couponIdIsNotUndefined(changesObj) {
     return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
   }

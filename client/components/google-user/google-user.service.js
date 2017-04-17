@@ -37,7 +37,6 @@ export function GoogleUserResources($http) {
       return $http.get(url, options);
     },
 
-
     queryforCompanyName(user, couponId) {
 
       var userEmail = user.getEmail();
@@ -123,6 +122,7 @@ export function GoogleUserResources($http) {
       var userEmail = user.getEmail();
       var accessToken = user.getAccessToken();
       var url = `/api/users/${userEmail}/coupons/trash/${couponId}`;
+
       var options = {
         headers: {
           'method': 'POST',
@@ -130,6 +130,7 @@ export function GoogleUserResources($http) {
           'access_token': accessToken
         }
       };
+
       return $http.post(url,options);
     },
 
@@ -149,7 +150,7 @@ export function GoogleUserResources($http) {
         }
       };
 
-      return $http.post(url, data, options);
+      return $http.post(url, data);
     },
 
     saveCouponAsFavorite(user, couponId){
