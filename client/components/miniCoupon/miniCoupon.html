@@ -17,8 +17,10 @@
       </div>
     </div>
 
+
+
     <div class="panel-footer moreInfo">
-      <span><a ng-click="$ctrl.saveCouponAsFavorite($ctrl.miniCoupons.id)" class="fa fa-heart fa-2x moreInfoL"></a></span>
+      <span><a style="padding-right: 1.7vw"ng-click="$ctrl.saveCouponAsFavorite($ctrl.miniCoupons.id)" class="fa fa-heart fa-2x moreInfoL"></a></span>
       <span><a ng-click="$ctrl.CouponTrash($ctrl.miniCoupons.id)" class="fa fa-trash fa-2x moreInfoL"></a></span>
       <span class="moreInfoC">Received: {{$ctrl.miniCoupons.date}}</span>
       <span><button ng-click="$ctrl.showCoupon($ctrl.miniCoupons.id)" class="btn-link moreInfoR">Original</button></span>
