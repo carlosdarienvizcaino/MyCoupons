@@ -20,8 +20,6 @@ export class MainController {
     }
 
   $onInit(){
-  console.log("Hello!");
-
 
     var queryCouponsIds = this.couponsService.getAllCouponsIds();
     this.organizedCompanyNames = [];
