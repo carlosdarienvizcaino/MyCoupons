@@ -20,9 +20,10 @@ export class MainController {
     }
 
   $onInit(){
+  console.log("Hello!");
+
 
     var queryCouponsIds = this.couponsService.getAllCouponsIds();
-
     this.organizedCompanyNames = [];
 
     if ( queryCouponsIds.length == 0) {
@@ -36,6 +37,7 @@ export class MainController {
         that.organizeCompanies(that.googleUser, ids);
       });
     }
+   this.queryFavoriteCouponsIds(this.googleUser, 24);
   }
 
   queryMostRecentCouponsIds(googleUser, NIds) {
@@ -106,6 +108,23 @@ export class MainController {
 
   }
 
+
+  queryFavoriteCouponsIds(googleUser, NIds) {
+
+    this.googleUserResources.queryFavoriteCouponsIds(googleUser, NIds)
+      .then(res => {
+        var ids = res.data.ids;
+
+        ids.map(obj => {
+          this.couponsService.addFavorites(obj.id,obj.id);
+        });
+
+        return this.couponsIds;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   tabSelected(name){
 
