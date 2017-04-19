@@ -21,9 +21,12 @@ export class NavbarComponent {
   }
 
   showName(){
-    var str = this.googleUser.getFullName().split(" ");
 
-    return str[0];
+    var userName = [""];
+    if(this.googleUser.getFullName() != undefined) {
+      userName = this.googleUser.getFullName().split(" ");
+    }
+    return userName[0];
   }
 
   removeCoupons(){
