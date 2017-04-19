@@ -79,6 +79,9 @@ this.coupon.addFavorites(couponId,couponId);
     var that = this;
     that.googleUserResources.trashCoupon(this.googleUser, couponId);
     that.coupon.removeNewCouponsForCompany(couponId);
+    if($state.includes('favoriteCoupons'))
+      this.removeCouponAsFavorite(couponId);
+    else
     $state.transitionTo("main",{},{reload:"main" , notify: true
     });
 
