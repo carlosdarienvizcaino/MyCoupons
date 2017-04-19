@@ -23,7 +23,7 @@
         <li ng-repeat="company in $ctrl.organizedCompanyNames">
           <a href="#" data-toggle="tab" ng-click="$ctrl.tabSelected(company.Name)">
             <span data-ng-if="company.Domain !== undefined" class="animate-if">
-              <img style="width: 3vw; height: 3vw;" class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
+              <img class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
             </span>
          </a>
         </li>

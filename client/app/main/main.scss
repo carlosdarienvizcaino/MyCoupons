@@ -72,12 +72,24 @@
 .nav-tabs>li>a{
   width: 7vw;
   height: auto;
- padding-left: 1.7vw;
+  padding-left: 1.7vw;
+}
+.nav-tabs>li>a>span>img{
+  width: 3vw;
+  height: 3vw;
 }
 
 #alignSearch{
   padding-right: 3vw;
 }
 
-
+@media screen and (max-width: 500px) {
+  .nav-tabs>li>a>span>img{
+    width: 5vw !important;
+    height: 5vw !important;
+  }
+  .nav-tabs>li>a {
+    padding-left: 7vw !important;
+  }
+}
 

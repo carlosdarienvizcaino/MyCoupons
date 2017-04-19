@@ -12,6 +12,7 @@ export class miniCouponComponent {
   // Used for one way binding
   couponId;
   miniCoupons;
+  dateArray = ["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
 
   constructor(GoogleUser, GoogleUserResources, $uibModal, Coupons){
     'ngInject';
@@ -34,6 +35,10 @@ export class miniCouponComponent {
     this.googleUserResources.queryMiniCouponWithId(user, couponId)
       .then(response => {
         that.miniCoupons = response.data;
+        var newDateArray = that.miniCoupons.date.split(" ");
+        var monthNum = this.dateArray.indexOf(newDateArray[1]);
+        var newDateFormat = monthNum + "/" + newDateArray[2] + "/" + newDateArray[3];
+        that.miniCoupons.date = newDateFormat;
       })
       .catch(error =>{
         console.log(error);
