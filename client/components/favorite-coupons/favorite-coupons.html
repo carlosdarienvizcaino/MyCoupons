@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <div id="mainbody" class="container mainStyle">
-
-
-  <span class="head">Favorite Coupons</span>
-
-
+  <h4>Favorite Coupons</h4>
 
   <div class="row">
     <div class="col-sm-12">
@@ -13,7 +9,7 @@
         <li ng-repeat="company in $ctrl.organizedCompanyNames">
           <a href="#" data-toggle="tab" ng-click="$ctrl.tabSelected(company.Name)">
             <span data-ng-if="company.Domain !== undefined" class="animate-if">
-              <img class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
+              <img style="width: 3vw; height: 3vw;" class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
             </span>
          </a>
         </li>
@@ -33,6 +29,7 @@
           elements="$ctrl.couponsIds"
           elements-for-current-page="$ctrl.currentShowingCoupons">
     </pagination>
+</div>
 </div>
 </html>
 

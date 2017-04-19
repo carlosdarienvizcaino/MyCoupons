@@ -32,6 +32,7 @@ export class NewCouponsComponent {
 
   queryNewCouponsPerCompanyForTheLastNDays(user, days) {
     var that = this;
+
     this.googleUserResources.queryNewCouponsPerCompanyForTheLastNDays(user, days)
       .then(response => {
         that.companies = response.data.companies;
