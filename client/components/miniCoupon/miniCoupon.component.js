@@ -40,14 +40,38 @@ export class miniCouponComponent {
       });
   }
 
-  saveCouponAsFavorite(couponId) {
-    this.googleUserResources.saveCouponAsFavorite(this.googleUser, couponId)
-      .then( res => {
+
+  removeCouponAsFavorite(couponId){
+    this.coupon.removeFavorite(couponId);
+    this.googleUserResources.removeCouponAsFavorite(this.googleUser, couponId)
+      .then(res => {
         console.log(res);
+        $state.go($state.current, {}, {reload: "miniCoupon", notify: true});
+        if($state.includes('favoriteCoupons'))
+        $state.go($state.current, {}, {reload: "favoriteCoupons", notify: true});
       })
       .catch(error => {
         console.log(error);
       });
+  }
+
+  saveCouponAsFavorite(couponId) {
+this.coupon.addFavorites(couponId,couponId);
+      this.googleUserResources.saveCouponAsFavorite(this.googleUser, couponId)
+        .then(res => {
+          console.log(res);
+          $state.go($state.current, {}, {reload: "miniCoupon", notify: true
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+
+  }
+
+  checkFavoriteCoupon(couponId){
+    return this.coupon.checkforFavorites(couponId);
   }
 
 
@@ -55,9 +79,17 @@ export class miniCouponComponent {
     var that = this;
     that.googleUserResources.trashCoupon(this.googleUser, couponId);
     that.coupon.removeNewCouponsForCompany(couponId);
+    if($state.includes('favoriteCoupons'))
+      this.removeCouponAsFavorite(couponId);
+    else
+    $state.transitionTo("main",{},{reload:"main" , notify: true
+    });
+
+
   }
 
   couponIdIsNotUndefined(changesObj) {
+
     return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
   }
 

@@ -82,23 +82,40 @@
 }
 
 .disclosure {
-  padding-top: 0px;
-  font-size: 11px;
+  padding-top: 0;
+  font-size: 1vw;
   height: 5vw;
   color: #bcbcbc;
   text-align: center;
 }
 
 .moreInfo {
-  font-size: 14px;
-  text-align: center;
+  position: relative;
   background-color: Tan;
+}
+
+.moreInfoLStar{
+  color: gold;
+  padding-right: 1vw;
+  position: relative;
+  float: left;
+  font-size: 2vw;
+}
+
+.moreInfoLStarEmpty{
+  color: black;
+  padding-right: 1vw;
+  position: relative;
+  float: left;
+  font-size: 2vw;
 }
 
 .moreInfoL {
   color: red;
   position: relative;
   float: left;
+  padding-right: 1.5vw;
+  font-size: 2vw;
 }
 
 .moreInfoC {
@@ -106,9 +123,13 @@
   position: relative;
   display: inline-block;
   margin: 0;
+  font-size: 1.6vw;
+  padding-right: 1.5vw;
 }
-
 .moreInfoR {
+  color: #f34235;
   position: relative;
-  float: right;
+  display: inline-block;
+  margin: 0;
+  font-size: 2vw;
 }

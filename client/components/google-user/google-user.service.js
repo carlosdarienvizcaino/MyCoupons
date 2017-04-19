@@ -169,6 +169,24 @@ export function GoogleUserResources($http) {
         }
       };
       return $http.post(url, data);
+    },
+
+    removeCouponAsFavorite(user, couponId){
+
+      var userEmail = user.getEmail();
+      var accessToken = user.getAccessToken();
+      var url = `/api/users/${userEmail}/coupons/modify/labels/${couponId}`;
+
+      var data = {
+        headers: {
+          'method': 'POST',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'access_token': accessToken,
+          'addLabelIds' : [],
+          'removeLabelIds' : ['STARRED']
+        }
+      };
+      return $http.post(url, data);
     }
 
   };
