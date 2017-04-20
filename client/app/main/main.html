@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+<div id="mainbody" class="container mainStyle">
 
-<div id="mainbody" class="container">
-  <div class="container">
+  <div class="container" id="alignSearch">
     <div class="row">
       <div class="-align-left">
         <form action="" class="search-form">
           <div class="form-group has-feedback">
             <label for="search" class="sr-only">Search</label>
-            <input type="text" ng-model="company" class="form-control" name="search" id="search" placeholder="search">
+            <input type="text" ng-model="company" class="form-control" name="search" id="search" placeholder="Search">
             <button ng-show="false" ng-click="$ctrl.runsearch(company)" ui-sref="main" type="submit"></button>
-            <span  class="glyphicon glyphicon-search form-control-feedback"></span>
+           <span  class="glyphicon glyphicon-search form-control-feedback"></span>
           </div>
         </form>
       </div>
     </div>
   </div>
 
-  <div  class="row">
-    <div class="col-lg-12">
-      <div ng-repeat="couponId in $ctrl.couponsIds ">
-        <mini-coupon coupon-id=couponId> </mini-coupon>
+  <div class="row" >
+    <div class="col-sm-12">
+      <ul class="nav nav-tabs">
+        <li ng-repeat="company in $ctrl.organizedCompanyNames">
+          <a href="#" data-toggle="tab" ng-click="$ctrl.tabSelected(company.Name)">
+            <span data-ng-if="company.Domain !== undefined" class="animate-if">
+              <img class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
+            </span>
+         </a>
+        </li>
+        <li>
+        <a class="showalltext" data-toggle="tab" ng-click="$ctrl.showAll()">Show All</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+
+  <div class="container couponHolder" style="padding-top: 6vw">
+    <div class="row">
+      <div class="col-md-6" ng-repeat="couponId in $ctrl.currentShowingCoupons">
+          <mini-coupon coupon-id=couponId> </mini-coupon>
       </div>
     </div>
   </div>
+
+    <pagination
+          elements-per-page="6"
+          elements="$ctrl.couponsIds"
+          elements-for-current-page="$ctrl.currentShowingCoupons">
+    </pagination>
 </div>
 </html>
 

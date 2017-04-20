@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <div class="container">
   <div class="row">
 
@@ -7,15 +8,15 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col col-xs-6">
-              <h3 class="panel-title">New Coupons</h3>
+              <h3 class="panel-title">Company Coupons</h3>
             </div>
             <div class="col col-xs-6 text-right">
               <button
                 type="button"
                 class="btn btn-sm btn-primary btn-create"
-                ng-click="$ctrl.viewAllCoupons()">
+                ng-click="$ctrl.viewAllCompanyCoupons()">
                 View All
-                </button>
+              </button>
             </div>
           </div>
         </div>
@@ -42,18 +43,18 @@
 
               <td class="col-check" align="center">
                 <input type="checkbox"
-                       ng-checked="$ctrl.selectedNewCouponsCompanyNames.indexOf(company) != -1"
-                       ng-click="$ctrl.updateNewCouponsForCompany(company.name, company.domain, company.newCouponsIds)"
+                       ng-checked="$ctrl.selectedCouponsCompanyNames.indexOf(company) != -1"
+                       ng-click="$ctrl.updateCouponsForCompanies(company.name, company.domain, company.usedCouponsIds)"
                 />
               </td>
               <td align="center">
-                <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px" onerror=this.src="/assets/images/logonotfound.PNG" />
+                <img class="roundlogo" src="https://logo.clearbit.com/{{company.domain}}" height="45px" width="45px" />
               </td>
               <td align="center">
-               <b>{{company.name}}</b>
+                <b>{{company.name}}</b>
               </td>
               <td align="center">
-                <b>{{company.newTotalCoupons}}</b>
+                <b>{{company.usedTotalCoupons + company.newTotalCoupons}}</b>
               </td>
 
             </tr>
@@ -62,13 +63,15 @@
         </div>
 
         <pagination
-          elements-per-page="5"
+          elements-per-page="7"
           elements="$ctrl.companies"
           elements-for-current-page="$ctrl.currentShowingCompanies">
         </pagination>
 
+
       </div>
     </div>
   </div>
-
 </div>
+
+</html>

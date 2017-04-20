@@ -1,8 +1,9 @@
+
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import routing from './main.routes';
+import routing from './favorite-coupons.routes';
 
-export class MainController {
+export class FavoriteCouponsController {
 
   companies = [];
   couponsIds = [];
@@ -12,43 +13,29 @@ export class MainController {
   currentShowingCoupons = [];
 
   /*@ngInject*/
-    constructor($scope, GoogleUser, GoogleUserResources, Coupons) {
+    constructor(GoogleUser, GoogleUserResources, Coupons) {
       this.googleUser = GoogleUser;
       this.googleUserResources = GoogleUserResources;
       this.couponsService = Coupons;
-      $scope.company =""
     }
 
   $onInit(){
 
-    var queryCouponsIds = this.couponsService.getAllCouponsIds();
-    this.organizedCompanyNames = [];
-
-    if ( queryCouponsIds.length == 0) {
-      if (this.googleUser.hasCredentials())
-        this.queryMostRecentCouponsIds(this.googleUser, 24);
-    }
-    else{
-      var that = this;
-      this.couponsIds = this.couponsService.getAllCouponsIds();
-      this.couponsIds.forEach(function(ids){
-        that.organizeCompanies(that.googleUser, ids);
-      });
-    }
-   this.queryFavoriteCouponsIds(this.googleUser, 24);
+      if (this.googleUser.hasCredentials()) {
+        this.queryFavoriteCouponsIds(this.googleUser, 24);
+      }
   }
 
-  queryMostRecentCouponsIds(googleUser, NIds) {
+  queryFavoriteCouponsIds(googleUser, NIds) {
 
-    this.googleUserResources.queryMostRecentCouponsIds(googleUser, NIds)
+    this.googleUserResources.queryFavoriteCouponsIds(googleUser, NIds)
       .then(res => {
-        var ids = res.data;
+        var ids = res.data.ids;
         this.couponsIds = [];
 
         ids.map(obj => {
           this.couponsIds.push(obj.id);
           this.organizeCompanies(googleUser, obj.id);
-          this.couponsService.addNewCouponsForCompany(obj.id,obj.id);
         });
 
         return this.couponsIds;
@@ -107,25 +94,7 @@ export class MainController {
   }
 
 
-  queryFavoriteCouponsIds(googleUser, NIds) {
-
-    this.googleUserResources.queryFavoriteCouponsIds(googleUser, NIds)
-      .then(res => {
-        var ids = res.data.ids;
-
-        ids.map(obj => {
-          this.couponsService.addFavorites(obj.id,obj.id);
-        });
-
-        return this.couponsIds;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   tabSelected(name){
-
     var that = this;
     var size = that.organizedCompanyNames.length;
 
@@ -137,42 +106,16 @@ export class MainController {
     }
 
   }
-
   showAll(){
     this.couponsIds =[];
-    this.couponsIds=this.couponsService.getAllCouponsIds();
+    this.couponsIds=this.couponsService.getAllFavoriteCouponsIds();
   }
-
-  runsearch(company){
-    this.organizedCompanyNames = [];
-    if(this.googleUser.hasCredentials() ) {
-      this.googleUserResources.queryMostRecentSearchedCoupon(this.googleUser, 10, company)
-        .then(res => {
-          var ids = res.data;
-
-          if (ids.constructor !== Array)
-            return;
-
-          this.couponsIds = [];
-
-          ids.map(obj => {
-            this.organizeCompanies(this.googleUser, obj.id);
-            this.couponsIds.push(obj.id);
-          });
-
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  }
-
 }
 
-export default angular.module('myCouponsApp.main', [uiRouter])
+export default angular.module('myCouponsApp.favoriteCoupons', [uiRouter])
   .config(routing)
-  .component('main', {
-    template: require('./main.html'),
-    controller: MainController,
+  .component('favoriteCoupons', {
+    template: require('./favorite-coupons.html'),
+    controller: FavoriteCouponsController,
   })
   .name;

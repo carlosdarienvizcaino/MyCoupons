@@ -27,7 +27,9 @@ module.exports = function(req, res){
     id : id,
     auth: oauth2Client,
     resource:{
-      removeLabelIds: ["UNREAD"]
+      removeLabelIds: req.body.headers.removeLabelIds,
+      addLabelIds: req.body.headers.addLabelIds,
+
     },
   }, function (err, response) {
     if(err){

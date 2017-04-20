@@ -1,39 +1,35 @@
-<!DOCTYPE html>
-<html>
-<div class="container">
-  <!-- Navigation -->
-  <div class="row">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">MyCoupons</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav js-nav-add-active-class navbar-right">
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="main">Main</a></li>
-            <li  ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="newCoupons">New</a></li>
-            <li   ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="companies">Companies</a></li>
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="signout">Signout</a></li>
-            <li ng-show="$ctrl.isGoogleLoggedIn()"><a type="button" class="navbar-btn btn btn-gradient-blue" am-latosans="bold"
-                                                      ui-sref="disconnect">Disconnect</a></li>
+<div class="navbar navbar-default navbar-static-top menu-wrap">
+  <nav class="menu">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="$ctrl.isCollapsed = !$ctrl.isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand font">MyCoupons</a>
+    </div>
+    <div uib-collapse="$ctrl.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-click="$ctrl.removeCoupons()" ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="main" data-ui-sref-opts="{notify:true, reload:true}">Main</a></li>
+        <li>
+          <a href="#" ng-show="$ctrl.isGoogleLoggedIn()" style="padding-right: 2.5vw;">Coupons<span class="arrow">&#9660;</span></a>
+          <ul class="sub-menu">
+            <li class="btn-block" ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="favoriteCoupons">Favorites</a></li>
+            <li class="btn-block" ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="newCoupons">New</a></li>
+            <li class="btn-block" ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="companyCoupons">Companies</a></li>
           </ul>
-
-          </div>
-      </div>
-    </nav>
-  </div>
+        </li>
+        <li>
+          <a href="#" ng-show="$ctrl.isGoogleLoggedIn()">{{$ctrl.showName()}} <img class="img-circle" ng-src={{$ctrl.getImage()}}>
+            <span class="arrow">&#9660;</span></a>
+          <ul class="sub-menu">
+            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="signout">Signout</a></li>
+            <li ng-show="$ctrl.isGoogleLoggedIn()"><a ui-sref="myAccount">Account</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
-</html>
-
-
-
 

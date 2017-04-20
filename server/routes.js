@@ -18,6 +18,7 @@ module.exports = function(app) {
     app.get('/api/users/:userId/coupons/ids/:maxResults', require('./api/coupons/coupons.id.controller'));
     app.get('/api/users/:userId/coupons/:id', require('./api/coupons/coupons.controller'));
     app.get('/api/users/:userId/coupons/minimal/:id', require('./api/coupons/minimal/minimal-coupon.controller'));
+    app.get('/api/users/:userId/coupons/favorites/ids', require('./api/coupons/favorites/favorites.controller'));
 
     // Companies
     app.get('/api/users/:userId/coupons/company/:id', require('./api/coupons/coupons.companyname.controller'));
@@ -26,7 +27,7 @@ module.exports = function(app) {
 
   // Modification
     app.post('/api/users/:userId/coupons/trash/:id', require('./api/coupons/trash-coupons.controller'));
-    app.post('/api/users/:userId/coupons/modify_label/:id', require('./api/coupons/modify-coupons.controller'));
+    app.post('/api/users/:userId/coupons/modify/labels/:id', require('./api/coupons/modify-coupons.controller'));
 
   // Authentication
     app.post('/api/auth/authcode/', require('./api/auth/authcode.controller'));

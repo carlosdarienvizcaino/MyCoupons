@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<div id="mainbody" class="container mainStyle">
+  <h4>Favorite Coupons</h4>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <ul   class="nav nav-tabs">
+        <li ng-repeat="company in $ctrl.organizedCompanyNames">
+          <a href="#" data-toggle="tab" ng-click="$ctrl.tabSelected(company.Name)">
+            <span data-ng-if="company.Domain !== undefined" class="animate-if">
+              <img style="width: 3vw; height: 3vw;" class="img-circle" ng-src="https://logo.clearbit.com/{{company.Domain}}" onerror=this.src="/assets/images/logonotfound.PNG" >
+            </span>
+         </a>
+        </li>
+        <li>
+          <a class="showalltext" data-toggle="tab" ng-click="$ctrl.showAll()">Show All</a>
+        </li>
+      </ul>
+  </div>
+
+  <div class="container couponHolder" style="padding-top: 6vw">
+    <div class="row">
+
+      <div class="col-md-6" ng-repeat="couponId in $ctrl.currentShowingCoupons">
+          <mini-coupon coupon-id=couponId> </mini-coupon>
+      </div>
+    </div>
+  </div>
+    <pagination
+          elements-per-page="6"
+          elements="$ctrl.couponsIds"
+          elements-for-current-page="$ctrl.currentShowingCoupons">
+    </pagination>
+</div>
+</div>
+</html>
+
+

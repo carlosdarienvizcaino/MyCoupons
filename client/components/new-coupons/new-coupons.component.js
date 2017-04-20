@@ -9,9 +9,11 @@ export class NewCouponsComponent {
   totalPagesNumber = 1;
   currentPageNumber = 1;
 
-  selectedNewCoupons = [];
+  selectedNewCouponsCompanyNames = [];
+  selectedNewCouponsIds = new Map();
   days = 7;
   companies = [];
+  currentShowingCompanies = ["NO"];
 
   constructor(GoogleUser, GoogleUserResources, Coupons, $state){
     'ngInject';
@@ -30,56 +32,47 @@ export class NewCouponsComponent {
 
   queryNewCouponsPerCompanyForTheLastNDays(user, days) {
     var that = this;
+
     this.googleUserResources.queryNewCouponsPerCompanyForTheLastNDays(user, days)
       .then(response => {
         that.companies = response.data.companies;
-        that.totalPagesNumber = Math.ceil(that.companies.length/that.numberOfCompaniesPerPage);
-        console.log(that.companies.length/that.numberOfCompaniesPerPage);
+        console.log(that.companies);
       })
       .catch(error =>{
         console.log(error);
       });
   }
 
-  getCompaniesForPage(pageNumber) {
+  updateNewCouponsForCompany(companyName, domain, ids) {
 
-    if (this.companies.length > 0) {
-      var startPosition = (pageNumber - 1) * this.numberOfCompaniesPerPage;
-      var endPosition = pageNumber * this.numberOfCompaniesPerPage;
-      return this.companies.slice(startPosition, endPosition);
-    }
+    if (this.selectedNewCouponsCompanyNames.indexOf(companyName) === -1) {
 
-    return [];
-  }
-
-  getPages() {
-    return new Array(this.totalPagesNumber);
-  }
-
-  setPage(pageNumber) {
-
-    if (pageNumber >= 1 && pageNumber <= this.totalPagesNumber)
-      this.currentPageNumber = pageNumber;
-  }
-
-  updateNewCouponsForCompany(companyName, ids) {
-
-    if (this.selectedNewCoupons.indexOf(companyName) === -1) {
       // Add
-      this.selectedNewCoupons.push(companyName);
-      this.couponsService.addNewCouponsForCompany(companyName, ids);
+      this.selectedNewCouponsIds.set(companyName, ids);
+      this.selectedNewCouponsCompanyNames.push(companyName);
     }
     else {
+
       // Remove
-      this.selectedNewCoupons.splice(this.selectedNewCoupons.indexOf(companyName), 1);
-      this.couponsService.removeNewCouponsForCompany(companyName);
+      this.selectedNewCouponsIds.delete(companyName);
+      this.selectedNewCouponsCompanyNames.splice(companyName, 1);
     }
   }
 
   viewAllCoupons() {
+    this.couponsService.removeAll();
+
+    var that = this;
+
+    that.selectedNewCouponsCompanyNames.forEach( function(companyName){
+      var ids = that.selectedNewCouponsIds.get(companyName);
+      ids.forEach(function(id){
+      that.couponsService.addNewCouponsForCompany(id, id);
+      });
+    });
+
     $state.go('main');
   }
-
 
 }
 

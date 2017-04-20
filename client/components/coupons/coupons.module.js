@@ -6,6 +6,7 @@
 export function Coupons() {
 
   var companies = new Map();
+  var favorites = new Map();
   var currentId;
 
 
@@ -13,14 +14,32 @@ export function Coupons() {
 
    addNewCouponsForCompany(companyName, ids) {
      companies.set(companyName, ids);
+
    },
+
+    addFavorites(companyName, ids){
+     favorites.set(companyName, ids);
+    },
+
+    checkforFavorites(ids){
+      return favorites.has(ids);
+
+    },
+
+    removeFavorite(ids){
+      favorites.delete(ids);
+    },
+    addCouponsForCompany(companyName, ids) {
+      companies.set(companyName, ids);
+    },
 
    removeNewCouponsForCompany(companyName) {
     companies.delete(companyName);
    },
 
-   removeAllCouponsIds() {
-     companies = new Map();
+   removeAll() {
+     companies.clear();
+     favorites.clear();
    },
 
     shareCurrentId(Id) {
@@ -37,7 +56,16 @@ export function Coupons() {
        couponIds = couponIds.concat(ids);
      });
      return couponIds;
-   }
+   },
+
+    getAllFavoriteCouponsIds() {
+      var couponIds = [];
+
+      favorites.forEach(function(ids){
+        couponIds = couponIds.concat(ids);
+      });
+      return couponIds;
+    }
 
   };
 }

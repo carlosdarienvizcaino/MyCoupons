@@ -11,7 +11,8 @@ export class miniCouponComponent {
 
   // Used for one way binding
   couponId;
-  miniCoupons = [];
+  miniCoupons;
+  dateArray = ["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
 
   constructor(GoogleUser, GoogleUserResources, $uibModal, Coupons){
     'ngInject';
@@ -33,7 +34,11 @@ export class miniCouponComponent {
     var that = this;
     this.googleUserResources.queryMiniCouponWithId(user, couponId)
       .then(response => {
-        that.miniCoupons.push(response.data);
+        that.miniCoupons = response.data;
+        var newDateArray = that.miniCoupons.date.split(" ");
+        var monthNum = this.dateArray.indexOf(newDateArray[1]);
+        var newDateFormat = monthNum + "/" + newDateArray[2] + "/" + newDateArray[3];
+        that.miniCoupons.date = newDateFormat;
       })
       .catch(error =>{
         console.log(error);
@@ -41,12 +46,55 @@ export class miniCouponComponent {
   }
 
 
+  removeCouponAsFavorite(couponId){
+    this.coupon.removeFavorite(couponId);
+    this.googleUserResources.removeCouponAsFavorite(this.googleUser, couponId)
+      .then(res => {
+        console.log(res);
+        $state.go($state.current, {}, {reload: "miniCoupon", notify: true});
+        if($state.includes('favoriteCoupons'))
+        $state.go($state.current, {}, {reload: "favoriteCoupons", notify: true});
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  saveCouponAsFavorite(couponId) {
+this.coupon.addFavorites(couponId,couponId);
+      this.googleUserResources.saveCouponAsFavorite(this.googleUser, couponId)
+        .then(res => {
+          console.log(res);
+          $state.go($state.current, {}, {reload: "miniCoupon", notify: true
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+
+  }
+
+  checkFavoriteCoupon(couponId){
+    return this.coupon.checkforFavorites(couponId);
+  }
+
+
   CouponTrash(couponId){
-    this.googleUserResources.trashCoupon(this.googleUser, couponId);
-    window.location.reload();
+    var that = this;
+    that.googleUserResources.trashCoupon(this.googleUser, couponId);
+    that.coupon.removeNewCouponsForCompany(couponId);
+    if($state.includes('favoriteCoupons'))
+      this.removeCouponAsFavorite(couponId);
+    else
+    $state.transitionTo("main",{},{reload:"main" , notify: true
+    });
+
+
   }
 
   couponIdIsNotUndefined(changesObj) {
+
     return changesObj.couponId != undefined && changesObj.couponId.currentValue != undefined;
   }
 
@@ -58,17 +106,9 @@ export class miniCouponComponent {
       controllerAs: '$mCtrl',
       bindToController: true
     });
-    this.ChangeCouponToRead(couponId);
-    console.log('here');
   }
-  ChangeCouponToRead(couponId){
-    this.googleUserResources.changeLabelId(this.googleUser, couponId);
-  }
-
 
 }
-
-
 
 export default angular.module('myCouponsApp.miniCoupon', [uiRouter])
   .config(routing)
