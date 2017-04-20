@@ -13,9 +13,10 @@ export class FavoriteCouponsController {
   currentShowingCoupons = [];
 
   /*@ngInject*/
-    constructor(GoogleUser, GoogleUserResources) {
+    constructor(GoogleUser, GoogleUserResources, Coupons) {
       this.googleUser = GoogleUser;
       this.googleUserResources = GoogleUserResources;
+      this.couponsService = Coupons;
     }
 
   $onInit(){
@@ -94,7 +95,6 @@ export class FavoriteCouponsController {
 
 
   tabSelected(name){
-
     var that = this;
     var size = that.organizedCompanyNames.length;
 
@@ -105,6 +105,10 @@ export class FavoriteCouponsController {
       }
     }
 
+  }
+  showAll(){
+    this.couponsIds =[];
+    this.couponsIds=this.couponsService.getAllFavoriteCouponsIds();
   }
 }
 

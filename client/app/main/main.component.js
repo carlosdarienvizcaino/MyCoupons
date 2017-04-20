@@ -138,6 +138,11 @@ export class MainController {
 
   }
 
+  showAll(){
+    this.couponsIds =[];
+    this.couponsIds=this.couponsService.getAllCouponsIds();
+  }
+
   runsearch(company){
     this.organizedCompanyNames = [];
     if(this.googleUser.hasCredentials() ) {

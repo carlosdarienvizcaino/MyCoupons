@@ -24,7 +24,6 @@ export function Coupons() {
     checkforFavorites(ids){
       return favorites.has(ids);
 
-
     },
 
     removeFavorite(ids){
@@ -57,7 +56,16 @@ export function Coupons() {
        couponIds = couponIds.concat(ids);
      });
      return couponIds;
-   }
+   },
+
+    getAllFavoriteCouponsIds() {
+      var couponIds = [];
+
+      favorites.forEach(function(ids){
+        couponIds = couponIds.concat(ids);
+      });
+      return couponIds;
+    }
 
   };
 }

@@ -73,4 +73,52 @@ used to vertically center elements, may need modification if you're not using de
   margin: 0;
 }
 
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus {
+  text-decoration: none;
+  background-color: rgba( 143,188,143, 0.5);
+  border: 0.15vw dashed rgba(128,128,128, 0.4);
+}
+.nav-tabs>li>a{
+  width: 7vw;
+  height: auto;
+  padding-left: 1.7vw;
+}
+.nav-tabs>li>a>span>img{
+  width: 3vw;
+  height: 3vw;
+}
+
+#alignSearch{
+  padding-right: 3vw;
+}
+
+@media screen and (max-width: 500px) {
+  .nav-tabs>li>a>span>img{
+    width: 5vw !important;
+    height: 5vw !important;
+  }
+  .nav-tabs>li>a{
+    width: 9vw !important;
+    //padding-left: 1.7vw !important;
+  }
+  .nav-tabs>li {
+    padding-left: 2vw !important;
+  }
+}
+
+.showalltext {
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 1.3vw !important;
+}
+.showalltext:hover {
+  cursor: pointer;
+
+
+
+
+  color: black !important;
+}
 

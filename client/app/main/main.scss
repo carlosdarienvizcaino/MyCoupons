@@ -88,8 +88,26 @@
     width: 5vw !important;
     height: 5vw !important;
   }
-  .nav-tabs>li>a {
-    padding-left: 7vw !important;
+  .nav-tabs>li>a{
+    width: 9vw !important;
+    //padding-left: 1.7vw !important;
+  }
+  .nav-tabs>li {
+    padding-left: 2vw !important;
   }
 }
 
+.showalltext {
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 1.3vw !important;
+}
+.showalltext:hover {
+  cursor: pointer;
+
+
+
+
+  color: black !important;
+}
